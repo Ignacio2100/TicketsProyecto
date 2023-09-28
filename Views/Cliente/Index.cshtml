@@ -1,0 +1,52 @@
+﻿@using Ticket.Models
+@model List<ClienteCLS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+
+        <div class="text-center" style="margin:30px;">
+            <h2>Listado de Personas</h2>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Codigo </th>
+                    <th>Nombres </th>
+                    <th>Apellidos </th>
+                    <th>Numero de Identificacion </th>                
+                    <th>Numero Telefonico</th>
+                    <th>Genero</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Apellido</td>
+                        <td>@item.Dpi</td>
+                        <td>@item.Telefono</td>
+                        <td>@item.NombreGenero</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+       
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

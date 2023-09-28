@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sistema de Tickets</title>
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Samsung_Internet_logo.svg/512px-Samsung_Internet_logo.svg.png" alt="Logo" style="max-width: 100px; height: 40px; border-radius: 50%"> 
+            FAST INTERNET
+            </a>
+
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Registro", "Agregar", "Cliente", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li>@Html.ActionLink("Iniciar Sesión", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    
+        <footer class="bg-dark text-white text-center py-1 fixed-bottom">
+            <p>&copy; UMG COATEPEQUE - @DateTime.Now.Year </p>
+        </footer>
+   
+
+  
+</body>
+</html>
