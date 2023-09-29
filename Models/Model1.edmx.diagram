@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f99d80f40209401191c86bb0ad79ee4a" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="TICKETSModel.Cliente" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TICKETSModel.Empleado" Width="1.5" PointX="3.625" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TICKETSModel.Empresa" Width="1.5" PointX="6.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TICKETSModel.Proceso" Width="1.5" PointX="11.375" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TICKETSModel.Ticket" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TICKETSModel.TipoGenero" Width="1.5" PointX="11.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TICKETSModel.TipoUsuario" Width="1.5" PointX="2.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TICKETSModel.Usuario" Width="1.5" PointX="5.875" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="TICKETSModel.FK__Cliente__Genero__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="TICKETSModel.FK__Ticket__ClienteI__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="TICKETSModel.FK__Usuario__Emplead__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="TICKETSModel.FK__Usuario__Empresa__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="TICKETSModel.FK__Ticket__ProcesoI__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="TICKETSModel.FK__Ticket__UsuarioI__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="TICKETSModel.FK__Usuario__TipoUsu__46E78A0C" ManuallyRouted="false" />
+      <Diagram DiagramId="c3f3fa77b0c544338f3656ef916d3153" Name="Diagram1">
+        <EntityTypeShape EntityType="TICKETSModel.Cliente" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICKETSModel.Empleado" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICKETSModel.Empresa" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICKETSModel.Proceso" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICKETSModel.Ticket" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICKETSModel.TipoGenero" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICKETSModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICKETSModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="TICKETSModel.FK__Cliente__Genero__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="TICKETSModel.FK__Cliente__Proceso__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="TICKETSModel.FK__Ticket__ClienteI__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="TICKETSModel.FK__Usuario__Emplead__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="TICKETSModel.FK__Usuario__Empresa__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="TICKETSModel.FK__Ticket__UsuarioI__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="TICKETSModel.FK__Usuario__TipoUsu__6C190EBB" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

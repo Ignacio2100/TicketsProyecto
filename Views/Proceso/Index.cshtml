@@ -1,5 +1,5 @@
 ﻿@using Ticket.Models
-@model List<ClienteCLS>
+@model List <ProcesoCLS>
 @{
     ViewBag.Title = "Index";
 }
@@ -9,24 +9,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Clientes</title>
+    <title>@ViewBag.Title - Tipo de Problema</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
 
         <div class="text-center" style="margin:30px;">
-            <h2>Listado de Personas</h2>    @*Este proces se utilizar para crear tablas y mostrar los resultados*@
+            <h2>Tipo de Problema</h2>
         </div>
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Codigo </th>
-                    <th>Nombres </th>
-                    <th>Apellidos </th>
-                    <th>Numero de Identificacion </th>
-                    <th>Numero Telefonico</th>
-                    <th>Genero</th>
+                    <th>Codigo</th>
                     <th>Tipo de Problema</th>
                 </tr>
             </thead>
@@ -36,17 +31,11 @@
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.Nombre</td>
-                        <td>@item.Apellido</td>
-                        <td>@item.Dpi</td>
-                        <td>@item.Telefono</td>
-                        <td>@item.NombreGenero</td>
-                        <td>@item.TipoProblema</td>
-
                     </tr>
                 }
             </tbody>
         </table>
-       
+        @Html.ActionLink("Agregar", "Agregar", "Proceso", null, new { @class = "btn btn-success" })
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
