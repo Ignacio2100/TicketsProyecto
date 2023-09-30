@@ -2,58 +2,62 @@
 
 @{
     ViewBag.Title = "Create";
-}
+}.
+<h2 class="text-center">Bienvenido a Fast Internet. Por favor, ingresa tu información para comenzar.</h2>
+<div class="container-fluid">
+    <!-- Utilizar un contenedor de Bootstrap con toda la pantalla -->
+    <div class="row justify-content-center align-items-center vh-100">
+        <!-- Centrar contenido verticalmente -->
+        <div class="col-md-4">
+            <!-- Definir el ancho de la columna -->
+            <form action="procesar.php" method="post">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ingresar Nombre">
+                </div>
 
-<h2>Create</h2>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" class="form-control" required placeholder="Ingresar Apellido">
+                </div>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Ticket</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UsuarioId, "UsuarioId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("UsuarioId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UsuarioId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="Ingresar Número teléfonico">
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClienteId, "ClienteId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ClienteId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="mb-3">
+                    <label for="dpi" class="form-label">DPI/NIT:</label>
+                    <input type="text" id="dpi" name="dpi" class="form-control" required placeholder="Ingresar DPI o NIT">
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="mb-3">
+                    <label for="genero" class="form-label">Género:</label>
+                    <select id="genero" name="genero" class="form-select">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nota, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nota, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nota, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="mb-3">
+                    <label for="consulta" class="form-label">Tipo de Consulta:</label>
+                    <select id="consulta" name="consulta" class="form-select">
+                        <option value="consulta1">Servicio al cliente</option>
+                        <option value="consulta2">Soporte Técnico</option>
+                        <option value="consulta3">Actualización de Datos</option>
+                    </select>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Registrar Consulta</button>
+                </div>
+            </form>
         </div>
     </div>
-}
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
