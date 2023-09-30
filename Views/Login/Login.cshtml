@@ -17,6 +17,8 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("Error", new { @class = "text-danger" })
+
 
 
                         <div class="mb-3 mx-auto" style="max-width: 300px;">
