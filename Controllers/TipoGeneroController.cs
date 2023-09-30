@@ -6,16 +6,16 @@ using System.Web.Mvc;
 using Ticket.Models;
 
 namespace Ticket.Controllers
-{
+{ 
     public class TipoGeneroController : Controller
     {
         // GET: Tipo Genero
         public ActionResult Index()
         {
             List<TipoGeneroCLS> ListaTipoGenero = null;
-            using (var bd = new TICKETSEntities())
+            using (var bd = new yanill_ticketsEntities())
             {
-                ListaTipoGenero = (from Tipo in bd.TipoGenero
+                ListaTipoGenero = (from Tipo in bd.TipoGeneroes
                                          select new TipoGeneroCLS
                                          {
                                              Id = Tipo.Id,
@@ -42,11 +42,11 @@ namespace Ticket.Controllers
             }
             else
             {
-                using (var bd = new TICKETSEntities())
+                using (var bd = new yanill_ticketsEntities())
                 {
                     TipoGenero oTipoGenero = new TipoGenero();
                     oTipoGenero.Genero = oTipoGeneroCLS.Genero;
-                    bd.TipoGenero.Add(oTipoGenero);
+                    bd.TipoGeneroes.Add(oTipoGenero);
                     bd.SaveChanges();
                 }
 

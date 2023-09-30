@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TICKETSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="yanill_ticketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -76,7 +76,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Cliente__Genero__6EF57B66">
+        <Association Name="FK__Cliente__Genero__35BCFE0A">
           <End Role="TipoGenero" Type="Self.TipoGenero" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -88,7 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cliente__Proceso__6E01572D">
+        <Association Name="FK__Cliente__Proceso__34C8D9D1">
           <End Role="Proceso" Type="Self.Proceso" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -100,7 +100,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__ClienteI__70DDC3D8">
+        <Association Name="FK__Ticket__ClienteI__37A5467C">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -112,7 +112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__UsuarioI__6FE99F9F">
+        <Association Name="FK__Ticket__UsuarioI__36B12243">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Emplead__6B24EA82">
+        <Association Name="FK__Usuario__Emplead__31EC6D26">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Empresa__6D0D32F4">
+        <Association Name="FK__Usuario__Empresa__33D4B598">
           <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__TipoUsu__6C190EBB">
+        <Association Name="FK__Usuario__TipoUsu__32E0915F">
           <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TICKETSModelStoreContainer">
+        <EntityContainer Name="yanill_ticketsModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
@@ -169,31 +169,31 @@
           <EntitySet Name="TipoGenero" EntityType="Self.TipoGenero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Cliente__Genero__6EF57B66" Association="Self.FK__Cliente__Genero__6EF57B66">
+          <AssociationSet Name="FK__Cliente__Genero__35BCFE0A" Association="Self.FK__Cliente__Genero__35BCFE0A">
             <End Role="TipoGenero" EntitySet="TipoGenero" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cliente__Proceso__6E01572D" Association="Self.FK__Cliente__Proceso__6E01572D">
+          <AssociationSet Name="FK__Cliente__Proceso__34C8D9D1" Association="Self.FK__Cliente__Proceso__34C8D9D1">
             <End Role="Proceso" EntitySet="Proceso" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__ClienteI__70DDC3D8" Association="Self.FK__Ticket__ClienteI__70DDC3D8">
+          <AssociationSet Name="FK__Ticket__ClienteI__37A5467C" Association="Self.FK__Ticket__ClienteI__37A5467C">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__UsuarioI__6FE99F9F" Association="Self.FK__Ticket__UsuarioI__6FE99F9F">
+          <AssociationSet Name="FK__Ticket__UsuarioI__36B12243" Association="Self.FK__Ticket__UsuarioI__36B12243">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Emplead__6B24EA82" Association="Self.FK__Usuario__Emplead__6B24EA82">
+          <AssociationSet Name="FK__Usuario__Emplead__31EC6D26" Association="Self.FK__Usuario__Emplead__31EC6D26">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Empresa__6D0D32F4" Association="Self.FK__Usuario__Empresa__6D0D32F4">
+          <AssociationSet Name="FK__Usuario__Empresa__33D4B598" Association="Self.FK__Usuario__Empresa__33D4B598">
             <End Role="Empresa" EntitySet="Empresa" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__TipoUsu__6C190EBB" Association="Self.FK__Usuario__TipoUsu__6C190EBB">
+          <AssociationSet Name="FK__Usuario__TipoUsu__32E0915F" Association="Self.FK__Usuario__TipoUsu__32E0915F">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
@@ -202,7 +202,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TICKETSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="yanill_ticketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -214,9 +214,9 @@
           <Property Name="Dpi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Genero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TipoGenero" Relationship="Self.FK__Cliente__Genero__6EF57B66" FromRole="Cliente" ToRole="TipoGenero" />
-          <NavigationProperty Name="Proceso" Relationship="Self.FK__Cliente__Proceso__6E01572D" FromRole="Cliente" ToRole="Proceso" />
-          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__ClienteI__70DDC3D8" FromRole="Cliente" ToRole="Ticket" />
+          <NavigationProperty Name="TipoGenero" Relationship="Self.FK__Cliente__Genero__35BCFE0A" FromRole="Cliente" ToRole="TipoGenero" />
+          <NavigationProperty Name="Proceso" Relationship="Self.FK__Cliente__Proceso__34C8D9D1" FromRole="Cliente" ToRole="Proceso" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__ClienteI__37A5467C" FromRole="Cliente" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -227,7 +227,7 @@
           <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__Emplead__6B24EA82" FromRole="Empleado" ToRole="Usuario" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuario__Emplead__31EC6D26" FromRole="Empleado" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -235,7 +235,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__Empresa__6D0D32F4" FromRole="Empresa" ToRole="Usuario" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuario__Empresa__33D4B598" FromRole="Empresa" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Proceso">
           <Key>
@@ -243,7 +243,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__Proceso__6E01572D" FromRole="Proceso" ToRole="Cliente" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Cliente__Proceso__34C8D9D1" FromRole="Proceso" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -254,8 +254,8 @@
           <Property Name="ClienteId" Type="Int32" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Nota" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Ticket__ClienteI__70DDC3D8" FromRole="Ticket" ToRole="Cliente" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Ticket__UsuarioI__6FE99F9F" FromRole="Ticket" ToRole="Usuario" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Ticket__ClienteI__37A5467C" FromRole="Ticket" ToRole="Cliente" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Ticket__UsuarioI__36B12243" FromRole="Ticket" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="TipoGenero">
           <Key>
@@ -263,7 +263,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__Genero__6EF57B66" FromRole="TipoGenero" ToRole="Cliente" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Cliente__Genero__35BCFE0A" FromRole="TipoGenero" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -271,7 +271,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__TipoUsu__6C190EBB" FromRole="TipoUsuario" ToRole="Usuario" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuario__TipoUsu__32E0915F" FromRole="TipoUsuario" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -283,12 +283,12 @@
           <Property Name="EmpresaId" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Usuario__Emplead__6B24EA82" FromRole="Usuario" ToRole="Empleado" />
-          <NavigationProperty Name="Empresa" Relationship="Self.FK__Usuario__Empresa__6D0D32F4" FromRole="Usuario" ToRole="Empresa" />
-          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__UsuarioI__6FE99F9F" FromRole="Usuario" ToRole="Ticket" />
-          <NavigationProperty Name="TipoUsuario1" Relationship="Self.FK__Usuario__TipoUsu__6C190EBB" FromRole="Usuario" ToRole="TipoUsuario" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Usuario__Emplead__31EC6D26" FromRole="Usuario" ToRole="Empleado" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK__Usuario__Empresa__33D4B598" FromRole="Usuario" ToRole="Empresa" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__UsuarioI__36B12243" FromRole="Usuario" ToRole="Ticket" />
+          <NavigationProperty Name="TipoUsuario1" Relationship="Self.FK__Usuario__TipoUsu__32E0915F" FromRole="Usuario" ToRole="TipoUsuario" />
         </EntityType>
-        <Association Name="FK__Cliente__Genero__6EF57B66">
+        <Association Name="FK__Cliente__Genero__35BCFE0A">
           <End Role="TipoGenero" Type="Self.TipoGenero" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -300,7 +300,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cliente__Proceso__6E01572D">
+        <Association Name="FK__Cliente__Proceso__34C8D9D1">
           <End Role="Proceso" Type="Self.Proceso" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -312,7 +312,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__ClienteI__70DDC3D8">
+        <Association Name="FK__Ticket__ClienteI__37A5467C">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -324,7 +324,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Emplead__6B24EA82">
+        <Association Name="FK__Usuario__Emplead__31EC6D26">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -336,7 +336,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Empresa__6D0D32F4">
+        <Association Name="FK__Usuario__Empresa__33D4B598">
           <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -348,7 +348,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__UsuarioI__6FE99F9F">
+        <Association Name="FK__Ticket__UsuarioI__36B12243">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -360,7 +360,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__TipoUsu__6C190EBB">
+        <Association Name="FK__Usuario__TipoUsu__32E0915F">
           <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -372,42 +372,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TICKETSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
-          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
-          <EntitySet Name="Empresa" EntityType="Self.Empresa" />
-          <EntitySet Name="Proceso" EntityType="Self.Proceso" />
-          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
-          <EntitySet Name="TipoGenero" EntityType="Self.TipoGenero" />
-          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK__Cliente__Genero__6EF57B66" Association="Self.FK__Cliente__Genero__6EF57B66">
-            <End Role="TipoGenero" EntitySet="TipoGenero" />
-            <End Role="Cliente" EntitySet="Cliente" />
+        <EntityContainer Name="yanill_ticketsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Empleadoes" EntityType="Self.Empleado" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresa" />
+          <EntitySet Name="Procesoes" EntityType="Self.Proceso" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="TipoGeneroes" EntityType="Self.TipoGenero" />
+          <EntitySet Name="TipoUsuarios" EntityType="Self.TipoUsuario" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Cliente__Genero__35BCFE0A" Association="Self.FK__Cliente__Genero__35BCFE0A">
+            <End Role="TipoGenero" EntitySet="TipoGeneroes" />
+            <End Role="Cliente" EntitySet="Clientes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cliente__Proceso__6E01572D" Association="Self.FK__Cliente__Proceso__6E01572D">
-            <End Role="Proceso" EntitySet="Proceso" />
-            <End Role="Cliente" EntitySet="Cliente" />
+          <AssociationSet Name="FK__Cliente__Proceso__34C8D9D1" Association="Self.FK__Cliente__Proceso__34C8D9D1">
+            <End Role="Proceso" EntitySet="Procesoes" />
+            <End Role="Cliente" EntitySet="Clientes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__ClienteI__70DDC3D8" Association="Self.FK__Ticket__ClienteI__70DDC3D8">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Ticket" EntitySet="Ticket" />
+          <AssociationSet Name="FK__Ticket__ClienteI__37A5467C" Association="Self.FK__Ticket__ClienteI__37A5467C">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Ticket" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Emplead__6B24EA82" Association="Self.FK__Usuario__Emplead__6B24EA82">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK__Usuario__Emplead__31EC6D26" Association="Self.FK__Usuario__Emplead__31EC6D26">
+            <End Role="Empleado" EntitySet="Empleadoes" />
+            <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Empresa__6D0D32F4" Association="Self.FK__Usuario__Empresa__6D0D32F4">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK__Usuario__Empresa__33D4B598" Association="Self.FK__Usuario__Empresa__33D4B598">
+            <End Role="Empresa" EntitySet="Empresas" />
+            <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__UsuarioI__6FE99F9F" Association="Self.FK__Ticket__UsuarioI__6FE99F9F">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Ticket" EntitySet="Ticket" />
+          <AssociationSet Name="FK__Ticket__UsuarioI__36B12243" Association="Self.FK__Ticket__UsuarioI__36B12243">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Ticket" EntitySet="Tickets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__TipoUsu__6C190EBB" Association="Self.FK__Usuario__TipoUsu__6C190EBB">
-            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK__Usuario__TipoUsu__32E0915F" Association="Self.FK__Usuario__TipoUsu__32E0915F">
+            <End Role="TipoUsuario" EntitySet="TipoUsuarios" />
+            <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -415,9 +415,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TICKETSModelStoreContainer" CdmEntityContainer="TICKETSEntities">
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="TICKETSModel.Cliente">
+        <EntityContainerMapping StorageEntityContainer="yanill_ticketsModelStoreContainer" CdmEntityContainer="yanill_ticketsEntities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProcesoId" ColumnName="ProcesoId" />
@@ -429,8 +429,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Empleado">
-            <EntityTypeMapping TypeName="TICKETSModel.Empleado">
+          <EntitySetMapping Name="Empleadoes">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -440,24 +440,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Empresa">
-            <EntityTypeMapping TypeName="TICKETSModel.Empresa">
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.Empresa">
               <MappingFragment StoreEntitySet="Empresa">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Proceso">
-            <EntityTypeMapping TypeName="TICKETSModel.Proceso">
+          <EntitySetMapping Name="Procesoes">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.Proceso">
               <MappingFragment StoreEntitySet="Proceso">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ticket">
-            <EntityTypeMapping TypeName="TICKETSModel.Ticket">
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.Ticket">
               <MappingFragment StoreEntitySet="Ticket">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
@@ -467,24 +467,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoGenero">
-            <EntityTypeMapping TypeName="TICKETSModel.TipoGenero">
+          <EntitySetMapping Name="TipoGeneroes">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.TipoGenero">
               <MappingFragment StoreEntitySet="TipoGenero">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Genero" ColumnName="Genero" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoUsuario">
-            <EntityTypeMapping TypeName="TICKETSModel.TipoUsuario">
+          <EntitySetMapping Name="TipoUsuarios">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.TipoUsuario">
               <MappingFragment StoreEntitySet="TipoUsuario">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="TICKETSModel.Usuario">
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="yanill_ticketsModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
@@ -509,10 +509,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

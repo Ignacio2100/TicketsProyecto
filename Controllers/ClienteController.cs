@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ticket.Models;
 
@@ -14,12 +12,12 @@ namespace Ticket.Controllers
         public ActionResult Index() //Este proceso se usa para poder en listar tablas o hacer Select de la base de datos
         {
             List<ClienteCLS> listaCliente = null;
-            using (var bd = new TICKETSEntities())
+            using (var bd = new yanill_ticketsEntities())
             {
-                listaCliente = (from Clientes in bd.Cliente
-                                join Tipo in bd.TipoGenero
+                listaCliente = (from Clientes in bd.Clientes
+                                join Tipo in bd.TipoGeneroes
                                 on Clientes.Genero equals Tipo.Id
-                                join Proceso in bd.Proceso
+                                join Proceso in bd.Procesoes
                                 on Clientes.ProcesoId equals Proceso.Id
                                 select new ClienteCLS
                                 {
@@ -41,9 +39,9 @@ namespace Ticket.Controllers
         {
             //agregar
             List<SelectListItem> listarGenero;
-            using (var bd = new TICKETSEntities())
+            using (var bd = new yanill_ticketsEntities())
             {
-                listarGenero = (from TipoGenero in bd.TipoGenero
+                listarGenero = (from TipoGenero in bd.TipoGeneroes
                                 select new SelectListItem
                                 {
                                     Text = TipoGenero.Genero,
@@ -59,9 +57,9 @@ namespace Ticket.Controllers
         {
             //agregar
             List<SelectListItem> listarProceso;
-            using (var bd = new TICKETSEntities())
+            using (var bd = new yanill_ticketsEntities())
             {
-                listarProceso = (from Proceso in bd.Proceso
+                listarProceso = (from Proceso in bd.Procesoes
                                 select new SelectListItem
                                 {
                                     Text = Proceso.Nombre,
@@ -96,10 +94,10 @@ namespace Ticket.Controllers
             }
             else
             {
-                using (var bd = new TICKETSEntities())
+                using (var bd = new yanill_ticketsEntities())
                 {
                     // Verificar si ya existe un cliente con el mismo DPI
-                    bool existeDPI = bd.Cliente.Any(c => c.Dpi == oClientesCLS.Dpi);
+                    bool existeDPI = bd.Clientes.Any(c => c.Dpi == oClientesCLS.Dpi);
 
                     if (existeDPI)
                     {
@@ -115,7 +113,7 @@ namespace Ticket.Controllers
                     oCliente.Telefono = oClientesCLS.Telefono;
                     oCliente.Genero = oClientesCLS.Genero;
                     oCliente.ProcesoId = oClientesCLS.Id;
-                    bd.Cliente.Add(oCliente);
+                    bd.Clientes.Add(oCliente);
                     bd.SaveChanges();
                 }
                 return RedirectToAction("Index", "Home");

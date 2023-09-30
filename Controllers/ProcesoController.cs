@@ -14,9 +14,9 @@ namespace Ticket.Controllers
         public ActionResult Index()
         {
             List<ProcesoCLS> ListaProceso = null;
-            using (var bd = new TICKETSEntities())
+            using (var bd = new yanill_ticketsEntities())
             {
-                ListaProceso = (from Tipo in bd.Proceso
+                ListaProceso = (from Tipo in bd.Procesoes
                                    select new ProcesoCLS
                                    {
                                        Id = Tipo.Id,
@@ -43,11 +43,11 @@ namespace Ticket.Controllers
             }
             else
             {
-                using (var bd = new TICKETSEntities())
+                using (var bd = new yanill_ticketsEntities())
                 {
                     Proceso oProceso = new Proceso();
                     oProceso.Nombre = oProcesoCLS.Nombre;
-                    bd.Proceso.Add(oProceso);
+                    bd.Procesoes.Add(oProceso);
                     bd.SaveChanges();
                 }
 
