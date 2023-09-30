@@ -97,7 +97,7 @@ namespace Ticket.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var usuario = db.Usuarios.Include(u => u.TipoUsuario)
+				var usuario = db.Usuarios.Include(u => u.TipoUsuario1)
 					.FirstOrDefault(u => u.Nombre == model.Correo && u.Password == model.Contraseña);
 				if (usuario == null)
 				{
