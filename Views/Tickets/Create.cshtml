@@ -2,111 +2,62 @@
 
 @{
     ViewBag.Title = "Create";
-}
+}.
+<h2 class="text-center">Bienvenido a Fast Internet. Por favor, ingresa tu información para comenzar.</h2>
+<div class="container-fluid">
+    <!-- Utilizar un contenedor de Bootstrap con toda la pantalla -->
+    <div class="row justify-content-center align-items-center vh-100">
+        <!-- Centrar contenido verticalmente -->
+        <div class="col-md-4">
+            <!-- Definir el ancho de la columna -->
+            <form action="procesar.php" method="post">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ingresar Nombre">
+                </div>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingreso Tickets</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" class="form-control" required placeholder="Ingresar Apellido">
+                </div>
 
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="Ingresar Número teléfonico">
+                </div>
 
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+                <div class="mb-3">
+                    <label for="dpi" class="form-label">DPI/NIT:</label>
+                    <input type="text" id="dpi" name="dpi" class="form-control" required placeholder="Ingresar DPI o NIT">
+                </div>
 
-        label {
-            display: block;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
+                <div class="mb-3">
+                    <label for="genero" class="form-label">Género:</label>
+                    <select id="genero" name="genero" class="form-select">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
 
-        input[type="text"],
-        input[type="tel"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+                <div class="mb-3">
+                    <label for="consulta" class="form-label">Tipo de Consulta:</label>
+                    <select id="consulta" name="consulta" class="form-select">
+                        <option value="consulta1">Servicio al cliente</option>
+                        <option value="consulta2">Soporte Técnico</option>
+                        <option value="consulta3">Actualización de Datos</option>
+                    </select>
+                </div>
 
-        select {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background: url('arrow.png') no-repeat right;
-            background-size: 25px;
-        }
-
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-            input[type="submit"]:hover {
-                background-color: #0056b3;
-            }
-    </style>
-
-</head>
-<body>
-    <h2>Bienvenido a Fast Internet por favor ingresa tu informacion para Comenzar</h2>
-    <form action="procesar.php" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required placeholder="Ingresar Nombre"><br><br>
-
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" required placeholder="Ingresar Apellido"><br><br>
-
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" required placeholder="Ingresar Número teléfonico"><br><br>
-
-        <label for="dpi">DPI/NIT:</label>
-        <input type="text" id="dpi" name="dpi" required placeholder="Ingresar DPI o NIT"><br><br>
-        <div>
-            <label for="genero">Género:</label>
-            <select id="genero" name="genero">
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-                <option value="otro">Otro</option>
-            </select><br><br>
-
-            <label for="consulta">Tipo de Consulta:</label>
-            <select id="consulta" name="consulta">
-                <option value="consulta1">Servicio al cliente</option>
-                <option value="consulta2">Soporte Tecnico</option>
-                <option value="consulta3">Actualizacion de Datos</option>
-            </select><br><br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Registrar Consulta</button>
+                </div>
+            </form>
         </div>
-        <input type="submit" value="Registrar Consulta">
-    </form>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+</div>
 
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
