@@ -84,5 +84,10 @@ namespace Ticket.Controllers
                 return View();
             }
         }
+
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
     }
 }
