@@ -12,7 +12,6 @@ namespace Ticket.Models
 
 		[Required(ErrorMessage = "La contraseña es requerida")]
 		[DisplayName("Contraseña")]
-		[StringLength(8, ErrorMessage = "La contraseña debe contener por lo menos ocho caracteres")]
 		public string Contraseña { get; set; }
 	}
 }

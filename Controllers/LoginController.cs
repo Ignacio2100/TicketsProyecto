@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Ticket.Models;
 
 namespace Ticket.Controllers
@@ -98,8 +99,14 @@ namespace Ticket.Controllers
                 System.Diagnostics.Debug.WriteLine("NO ES VALIDO");
 				return View(model);
 			}
-			System.Diagnostics.Debug.WriteLine("NO ES VALIDO");
-            return RedirectToAction("Index");
+            var usuario = db.Usuarios.FirstOrDefault(u => u.Nombre == model.Correo && u.Password == model.Contraseña);
+            if (usuario == null)
+            {
+				ModelState.AddModelError("Error", "Usuario o contraseña incorrecta");
+				System.Diagnostics.Debug.WriteLine("Usuario o contraseña incorrecta");
+				return View(model);
+            }
+            return RedirectToAction("Index", "Cliente");
         }
     }
 }
