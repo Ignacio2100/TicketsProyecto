@@ -89,5 +89,17 @@ namespace Ticket.Controllers
         {
             return View("Login");
         }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                System.Diagnostics.Debug.WriteLine("NO ES VALIDO");
+				return View(model);
+			}
+			System.Diagnostics.Debug.WriteLine("NO ES VALIDO");
+            return RedirectToAction("Index");
+        }
     }
 }
