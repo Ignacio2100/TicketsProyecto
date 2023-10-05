@@ -1,0 +1,52 @@
+﻿@model Ticket.Models.Ticket
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>Crear ticket</h2>
+<div>
+    <h3>Información personal</h3>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </dt>
+        <dd>
+            @Model.Cliente.Nombre
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Apellido)
+        </dt>
+        <dd>
+            @Model.Cliente.Apellido
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Telefono)
+        </dt>
+        <dd>
+            @Model.Cliente.Telefono
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Dpi)
+        </dt>
+        <dd>
+            @Model.Cliente.Dpi
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.TipoGenero.Genero)
+        </dt>
+        <dd>
+            @Model.Cliente.TipoGenero.Genero
+        </dd>
+    </dl>
+    @using (Html.BeginForm("Crear", "Tickets", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input name="ClienteId" type="number" hidden value="@Model.ClienteId"/>
+        <div class="form-group">
+            <label for="ProcesoId">Seleccione un proceso:</label>
+            @Html.DropDownListFor(model => model.ProcesoId, ViewBag.Procesos as SelectList, new { @class = "form-select" })
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </div>
+    }
+</div>
+

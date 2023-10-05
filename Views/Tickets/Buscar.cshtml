@@ -1,0 +1,16 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+@using (Html.BeginForm("BuscarDPI", "Tickets", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="">
+        <label>DPI</label>
+        <input name="dpi" class="form-control" type="text"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+}

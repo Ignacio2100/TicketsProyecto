@@ -35,9 +35,19 @@
 
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Tickets", "Buscar", "Tickets", new { area = "" }, new { @class = "nav-link" })
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
-                    <li>@Html.ActionLink("Iniciar Sesión", "Login", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (Session["uid"] != null)
+                    {
+                        <li>@Html.ActionLink("Cerrar sesión", "Logout", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Iniciar Sesión", "Index", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
                 </ul>
             </div>
 
@@ -46,9 +56,9 @@
     <div class="container body-content">
         @RenderBody()
     </div>
-        <footer class="bg-dark text-white text-center py-1 fixed-bottom">
-            <p>&copy; UMG COATEPEQUE - @DateTime.Now.Year </p>
-        </footer>
-   
+    <footer class="bg-dark text-white text-center py-1 sticky-bottom">
+        <p>&copy; UMG COATEPEQUE - @DateTime.Now.Year </p>
+    </footer>
+
 </body>
 </html>

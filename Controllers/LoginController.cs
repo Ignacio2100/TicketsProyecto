@@ -12,7 +12,26 @@ namespace Ticket.Controllers
 		// GET: Login
 		public ActionResult Index()
 		{
+			if (Session["uid"] != null)
+			{
+				return RedirectToAction("Index", "Home");
+			}
 			return View();
+		}
+
+		public ActionResult Logout()
+		{
+			Session["uid"] = null;
+			Session["rol"] = null;
+			return RedirectToAction("Index");
+		}
+
+		[HttpPost]
+		public ActionResult LogoutConfirmed()
+		{
+			Session["uid"] = null;
+			Session["rol"] = null;
+			return RedirectToAction("Index");
 		}
 
 		// GET: Login/Details/5
@@ -101,12 +120,14 @@ namespace Ticket.Controllers
 					.FirstOrDefault(u => u.Nombre == model.Correo && u.Password == model.Contraseña);
 				if (usuario == null)
 				{
-					ModelState.AddModelError("Error", "Usuario o contraseña incorrecta");
 					System.Diagnostics.Debug.WriteLine("Usuario o contraseña incorrecta");
 					return View(model);
 				}
 				else
 				{
+					Session["uid"] = usuario.Id;
+					Session["rol"] = usuario.TipoUsuario;
+
 					// Si el usuario es administrador
 					if (usuario.TipoUsuario1.Id == 1)
 					{

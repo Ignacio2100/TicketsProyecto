@@ -1,0 +1,10 @@
+﻿@model Ticket.Models.Ticket
+
+<div>
+    <h3>Fast Internet</h3>
+    <p>@Model.Cliente.Nombre @Model.Cliente.Apellido, tu solicitud fue realizada con éxito. Deseas imprimir tu comprobante?</p>
+    <div>
+        <a href="@Url.Action("Buscar")">Sí</a>
+        <a href="@Url.Action("Buscar")">No</a>
+    </div>
+</div>
