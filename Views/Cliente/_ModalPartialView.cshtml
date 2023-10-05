@@ -1,0 +1,68 @@
+﻿@using Ticket.Models
+@model ClienteCLS
+
+<div class="modal fade" id="ClienteModal-@Model.Id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <h2 class="text-center mb-4">Panel Detalles del ticket</h2>
+                        <form action="" method="POST">
+                            <!-- Campo para el número de ticket -->
+                            <div class="mb-3">
+                                <label for="ticket" class="form-label">Número de Ticket:</label>
+                                <input type="text" class="form-control" id="ticket" name="ticket" readonly value="@Model.Id">
+                            </div>
+
+                            <!-- Campo para el DPI -->
+                            <div class="mb-3">
+                                <label for="dpi" class="form-label">DPI/NIT:</label>
+                                <input type="text" class="form-control" id="dpi" name="dpi" readonly value="@Model.Dpi">
+                            </div>
+
+                            <!-- Campo para el género -->
+                            <div class="mb-3">
+                                <label for="genero" class="form-label">Género:</label>
+                                <select class="form-select" id="genero" name="genero">
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+
+                            <!-- Campos para el nombre y el teléfono en la misma fila -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" readonly value="@Model.Nombre">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="apellido" class="form-label">Apellido:</label>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" readonly value="@Model.Apellido">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telefono" class="form-label">Teléfono:</label>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono" readonly value="@Model.Telefono">
+                                </div>
+                            </div>
+                            <!-- Textarea para agregar un comentario -->
+                            <div class="mb-3">
+                                <label for="comentario" class="form-label">Comentario:</label>
+                                <textarea class="form-control" id="comentario" name="comentario" rows="4"></textarea>
+                            </div>
+                            <!-- Botón de envío del formulario -->
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
