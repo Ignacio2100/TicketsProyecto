@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Agregar";
     List<SelectListItem> listarGenero = (List<SelectListItem>)ViewBag.lista;
-    List<SelectListItem> listarProceso = (List<SelectListItem>)ViewBag.lista2;
+    
 }
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
     <div class="container mt-5">
         <div class="text-center">
             <i class="fas fa-user fa-5x animate__animated animate__bounce" style="display: block; margin: 0 auto; color: #007bff;"></i>
-            <h2 class="mb-3">Registre Su Turno</h2>
+            <h2 class="mb-3">Registro de Cliente</h2>
         </div>
         <div class="col-md-6 mx-auto">
             @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
@@ -59,12 +59,6 @@
                     @Html.LabelFor(p => p.Genero)
                     @Html.DropDownList("Genero", listarGenero, new { @class = "form-control" })
                     @Html.ValidationMessage("Genero", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group space-between-elements">
-                    @Html.LabelFor(p => p.ProcesoId)
-                    @Html.DropDownList("Id", listarProceso, new { @class = "form-control" })
-                    @Html.ValidationMessage("Id", new { @class = "text-danger" })
                 </div>
 
                 <div style="text-align: center; margin: 20px; padding: 10px;">

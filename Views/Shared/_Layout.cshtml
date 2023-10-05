@@ -13,22 +13,34 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Samsung_Internet_logo.svg/512px-Samsung_Internet_logo.svg.png" alt="Logo" style="max-width: 100px; height: 40px; border-radius: 50%"> 
-            FAST INTERNET
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Samsung_Internet_logo.svg/512px-Samsung_Internet_logo.svg.png" alt="Logo" style="max-width: 100px; height: 40px; border-radius: 50%">
+                FAST INTERNET
             </a>
 
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>@Html.ActionLink("Registro", "Agregar", "Cliente", new { area = "" }, new { @class = "nav-link" })</li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li>@Html.ActionLink("Iniciar Sesión", "Login", "Login", new { area = "" }, new { @class = "nav-link" })</li>
-                    </ul>
-                </div>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="comprasDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Clientes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="comprasDropdown">
+                            <li>@Html.ActionLink("Creacion", "Agregar", "Cliente", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Listado", "Index", "Cliente", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li class="dropdown-divider"></li> <!-- Agregar un separador entre las opciones existentes y las nuevas -->
+                            <li>@Html.ActionLink("Reporte del Mes", "Index", "Reporte", new { area = "" }, new { @class = "dropdown-item" })</li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li>@Html.ActionLink("Iniciar Sesión", "Login", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+
         </div>
     </nav>
     <div class="container body-content">
@@ -38,7 +50,5 @@
             <p>&copy; UMG COATEPEQUE - @DateTime.Now.Year </p>
         </footer>
    
-
-  
 </body>
 </html>

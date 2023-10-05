@@ -17,8 +17,6 @@ namespace Ticket.Controllers
                 listaCliente = (from Clientes in bd.Clientes
                                 join Tipo in bd.TipoGeneroes
                                 on Clientes.Genero equals Tipo.Id
-                                join Proceso in bd.Procesoes
-                                on Clientes.ProcesoId equals Proceso.Id
                                 select new ClienteCLS
                                 {
                                     Id = Clientes.Id,
@@ -27,7 +25,7 @@ namespace Ticket.Controllers
                                     Dpi = Clientes.Dpi,
                                     Telefono = Clientes.Telefono,
                                     NombreGenero = Tipo.Genero,
-                                    TipoProblema = Proceso.Nombre 
+                                   
                                 }).ToList();
             }
 
@@ -53,28 +51,12 @@ namespace Ticket.Controllers
             }
         }
 
-        public void listarProceso() //Este proceso se usa para poder en listar los elementos de una tabla
-        {
-            //agregar
-            List<SelectListItem> listarProceso;
-            using (var bd = new yanill_ticketsEntities())
-            {
-                listarProceso = (from Proceso in bd.Procesoes
-                                select new SelectListItem
-                                {
-                                    Text = Proceso.Nombre,
-                                    Value = Proceso.Id.ToString(),
-
-                                }).ToList();
-                listarProceso.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
-                ViewBag.lista2 = listarProceso;
-            }
-        }
+      
 
         public void ListarCombos()
         {
             listarComboGenero();
-            listarProceso();
+          
 
         }
         public ActionResult Agregar()
@@ -112,11 +94,10 @@ namespace Ticket.Controllers
                     oCliente.Dpi = oClientesCLS.Dpi;
                     oCliente.Telefono = oClientesCLS.Telefono;
                     oCliente.Genero = oClientesCLS.Genero;
-                    oCliente.ProcesoId = oClientesCLS.Id;
                     bd.Clientes.Add(oCliente);
                     bd.SaveChanges();
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Cliente");
             }
 
         }

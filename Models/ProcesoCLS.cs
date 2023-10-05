@@ -12,6 +12,6 @@ namespace Ticket.Models
         public int Id { get; set; }
 
         [Display(Name = "Tipo de Problema")]
-        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
     }
 }

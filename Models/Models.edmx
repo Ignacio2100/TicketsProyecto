@@ -4,13 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="yanill_ticketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="yanill_ticketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProcesoId" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Dpi" Type="varchar" MaxLength="20" Nullable="false" />
@@ -39,7 +38,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -47,6 +46,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UsuarioId" Type="int" />
+          <Property Name="ProcesoId" Type="int" Nullable="false" />
           <Property Name="ClienteId" Type="int" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Nota" Type="varchar" MaxLength="255" />
@@ -76,7 +76,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Cliente__Genero__35BCFE0A">
+        <Association Name="FK__Cliente__Genero__628FA481">
           <End Role="TipoGenero" Type="Self.TipoGenero" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -88,19 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cliente__Proceso__34C8D9D1">
-          <End Role="Proceso" Type="Self.Proceso" Multiplicity="1" />
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proceso">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cliente">
-              <PropertyRef Name="ProcesoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Ticket__ClienteI__37A5467C">
+        <Association Name="FK__Ticket__ClienteI__656C112C">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -112,7 +100,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__UsuarioI__36B12243">
+        <Association Name="FK__Ticket__ProcesoI__6477ECF3">
+          <End Role="Proceso" Type="Self.Proceso" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proceso">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ProcesoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__UsuarioI__6383C8BA">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Emplead__31EC6D26">
+        <Association Name="FK__Usuario__Emplead__5FB337D6">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Empresa__33D4B598">
+        <Association Name="FK__Usuario__Empresa__619B8048">
           <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__TipoUsu__32E0915F">
+        <Association Name="FK__Usuario__TipoUsu__60A75C0F">
           <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,37 +169,36 @@
           <EntitySet Name="TipoGenero" EntityType="Self.TipoGenero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Cliente__Genero__35BCFE0A" Association="Self.FK__Cliente__Genero__35BCFE0A">
+          <AssociationSet Name="FK__Cliente__Genero__628FA481" Association="Self.FK__Cliente__Genero__628FA481">
             <End Role="TipoGenero" EntitySet="TipoGenero" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cliente__Proceso__34C8D9D1" Association="Self.FK__Cliente__Proceso__34C8D9D1">
-            <End Role="Proceso" EntitySet="Proceso" />
-            <End Role="Cliente" EntitySet="Cliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Ticket__ClienteI__37A5467C" Association="Self.FK__Ticket__ClienteI__37A5467C">
+          <AssociationSet Name="FK__Ticket__ClienteI__656C112C" Association="Self.FK__Ticket__ClienteI__656C112C">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__UsuarioI__36B12243" Association="Self.FK__Ticket__UsuarioI__36B12243">
+          <AssociationSet Name="FK__Ticket__ProcesoI__6477ECF3" Association="Self.FK__Ticket__ProcesoI__6477ECF3">
+            <End Role="Proceso" EntitySet="Proceso" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__UsuarioI__6383C8BA" Association="Self.FK__Ticket__UsuarioI__6383C8BA">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Emplead__31EC6D26" Association="Self.FK__Usuario__Emplead__31EC6D26">
+          <AssociationSet Name="FK__Usuario__Emplead__5FB337D6" Association="Self.FK__Usuario__Emplead__5FB337D6">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Empresa__33D4B598" Association="Self.FK__Usuario__Empresa__33D4B598">
+          <AssociationSet Name="FK__Usuario__Empresa__619B8048" Association="Self.FK__Usuario__Empresa__619B8048">
             <End Role="Empresa" EntitySet="Empresa" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__TipoUsu__32E0915F" Association="Self.FK__Usuario__TipoUsu__32E0915F">
+          <AssociationSet Name="FK__Usuario__TipoUsu__60A75C0F" Association="Self.FK__Usuario__TipoUsu__60A75C0F">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="yanill_ticketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -208,14 +207,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProcesoId" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Dpi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Genero" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TipoGenero" Relationship="Self.FK__Cliente__Genero__35BCFE0A" FromRole="Cliente" ToRole="TipoGenero" />
-          <NavigationProperty Name="Proceso" Relationship="Self.FK__Cliente__Proceso__34C8D9D1" FromRole="Cliente" ToRole="Proceso" />
           <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__ClienteI__37A5467C" FromRole="Cliente" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Empleado">
@@ -242,8 +239,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FK__Cliente__Proceso__34C8D9D1" FromRole="Proceso" ToRole="Cliente" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tickets" Relationship="yanill_ticketsModel.FK__Ticket__ProcesoI__6477ECF3" FromRole="Proceso" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -256,6 +253,8 @@
           <Property Name="Nota" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK__Ticket__ClienteI__37A5467C" FromRole="Ticket" ToRole="Cliente" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK__Ticket__UsuarioI__36B12243" FromRole="Ticket" ToRole="Usuario" />
+          <Property Name="ProcesoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proceso" Relationship="yanill_ticketsModel.FK__Ticket__ProcesoI__6477ECF3" FromRole="Ticket" ToRole="Proceso" />
         </EntityType>
         <EntityType Name="TipoGenero">
           <Key>
@@ -297,18 +296,6 @@
             </Principal>
             <Dependent Role="Cliente">
               <PropertyRef Name="Genero" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Cliente__Proceso__34C8D9D1">
-          <End Role="Proceso" Type="Self.Proceso" Multiplicity="1" />
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proceso">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cliente">
-              <PropertyRef Name="ProcesoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -385,10 +372,6 @@
             <End Role="TipoGenero" EntitySet="TipoGeneroes" />
             <End Role="Cliente" EntitySet="Clientes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cliente__Proceso__34C8D9D1" Association="Self.FK__Cliente__Proceso__34C8D9D1">
-            <End Role="Proceso" EntitySet="Procesoes" />
-            <End Role="Cliente" EntitySet="Clientes" />
-          </AssociationSet>
           <AssociationSet Name="FK__Ticket__ClienteI__37A5467C" Association="Self.FK__Ticket__ClienteI__37A5467C">
             <End Role="Cliente" EntitySet="Clientes" />
             <End Role="Ticket" EntitySet="Tickets" />
@@ -409,7 +392,23 @@
             <End Role="TipoUsuario" EntitySet="TipoUsuarios" />
             <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
+          <AssociationSet Name="FK__Ticket__ProcesoI__6477ECF3" Association="yanill_ticketsModel.FK__Ticket__ProcesoI__6477ECF3">
+            <End Role="Proceso" EntitySet="Procesoes" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__Ticket__ProcesoI__6477ECF3">
+          <End Type="yanill_ticketsModel.Proceso" Role="Proceso" Multiplicity="1" />
+          <End Type="yanill_ticketsModel.Ticket" Role="Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proceso">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ProcesoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -420,7 +419,6 @@
             <EntityTypeMapping TypeName="yanill_ticketsModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProcesoId" ColumnName="ProcesoId" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Dpi" ColumnName="Dpi" />
@@ -451,14 +449,15 @@
           <EntitySetMapping Name="Procesoes">
             <EntityTypeMapping TypeName="yanill_ticketsModel.Proceso">
               <MappingFragment StoreEntitySet="Proceso">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tickets">
             <EntityTypeMapping TypeName="yanill_ticketsModel.Ticket">
               <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="ProcesoId" ColumnName="ProcesoId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
                 <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />

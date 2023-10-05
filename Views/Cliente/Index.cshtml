@@ -27,7 +27,7 @@
                     <th>Numero de Identificacion </th>
                     <th>Numero Telefonico</th>
                     <th>Genero</th>
-                    <th>Tipo de Problema</th>
+              
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -41,7 +41,7 @@
                         <td>@cliente.Dpi</td>
                         <td>@cliente.Telefono</td>
                         <td>@cliente.NombreGenero</td>
-                        <td>@cliente.TipoProblema</td>
+                      
                         <td>
                             <button class="border-0 bg-transparent ms-3 text-danger" data-bs-toggle="modal" data-bs-target="#ClienteModal-@cliente.Id">Visualizar</button>
                             @Html.Partial("_ModalPartialView", cliente)

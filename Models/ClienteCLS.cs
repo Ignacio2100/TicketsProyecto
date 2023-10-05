@@ -36,14 +36,11 @@ namespace Ticket.Models
         [Required]
         public int Genero { get; set; }
 
-        [Display(Name = "Tipo de Problema")]
-        [Required]
-        public int ProcesoId { get; set; }
+        
 
         //Adiccion para en listar
         public string NombreGenero { get; set; }
 
-        //Adiccion para en listar
-        public string TipoProblema { get; set; }
+        
     }
 }
