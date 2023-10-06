@@ -4,13 +4,55 @@
     ViewBag.Title = "Crear";
 }
 
-@using (Html.BeginForm("BuscarDPI", "Tickets", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+<style>
+    /* Estilos personalizados */
+    .container-fluid {
+        padding: 20px;
+    }
 
-    <div class="">
-        <label>DPI</label>
-        <input name="dpi" class="form-control" type="text"/>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+</style>
+
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center" style="height: 70vh;">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Ingrese el Documento Personal de Identificacion</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("BuscarDPI", "Tickets", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label for="dpi">No. DPI</label>
+                            <input name="dpi" id="dpi" class="form-control" type="text" required />
+                            <div class="invalid-feedback">
+                                Por favor, ingrese un DPI válido.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Buscar</button>
-}
+</div>

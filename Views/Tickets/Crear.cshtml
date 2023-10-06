@@ -3,9 +3,88 @@
     ViewBag.Title = "Crear";
 }
 
-<h2>Crear ticket</h2>
-<div>
-    <h3>Información personal</h3>
+<style>
+    /* Estilos personalizados */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+      
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 80px;
+        color: #007bff;
+  
+        
+    }
+
+    .container1 {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+       
+    }
+
+    h3 {
+        color: #007bff;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 10px;
+        
+    }
+
+    dt {
+        font-weight: bold;
+      
+        margin-left: 100px;
+    }
+
+    dd {
+        margin-left: 120px;
+       
+    }
+
+    .form-group {
+        margin-top: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin:20px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h2>Creación de Ticket</h2>
+<div class="container1">
+    <h3>Información Personal</h3>
     <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Cliente.Nombre)
@@ -41,12 +120,11 @@
     @using (Html.BeginForm("Crear", "Tickets", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <input name="ClienteId" type="number" hidden value="@Model.ClienteId"/>
+        <input name="ClienteId" type="number" hidden value="@Model.ClienteId" />
         <div class="form-group">
             <label for="ProcesoId">Seleccione un proceso:</label>
             @Html.DropDownListFor(model => model.ProcesoId, ViewBag.Procesos as SelectList, new { @class = "form-select" })
-            <button type="submit" class="btn btn-primary">Crear</button>
         </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
     }
 </div>
-
