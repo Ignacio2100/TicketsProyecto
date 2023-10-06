@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Ticket.Models;
 using Tickets = Ticket.Models.Ticket;
 using System.Diagnostics;
 using Microsoft.Ajax.Utilities;
+using System;
+using System.Data.Entity;
+using System.Net.Sockets;
 
 namespace Ticket.Controllers
 {
@@ -40,6 +42,37 @@ namespace Ticket.Controllers
 			var cliente = db.Clientes.FirstOrDefault(c => c.Id == ticket.ClienteId);
 			ticket.Cliente = cliente;
 			return View(ticket);
+		}
+
+		[HttpPost]
+		public ActionResult AtenderTicket(Tickets model)
+		{
+			Debug.Write("es valido: ");
+			Debug.WriteLine(ModelState.IsValid);
+			if (model.Nota.IsNullOrWhiteSpace())
+			{
+				ModelState.AddModelError("Nota", "Nota vacía.");
+				var client = db.Clientes.First(c => c.Id == model.ClienteId);
+				var proceso = db.Procesoes.First(p => p.Id == model.ProcesoId);
+				model.Cliente = client;
+				model.Proceso = proceso;
+				return View(model);
+			}
+			//var uid = Session["uid"];
+			//if (uid == null)
+			//{
+			//	return RedirectToAction("Index", "Login");
+			//}
+			//else
+			//{
+			//var userId = Convert.ToInt32(uid.ToString());
+			//model.UsuarioId = userId;
+			Debug.WriteLine("about to save to db");
+			model.Fecha = DateTime.Now;
+			db.Entry(model).State = EntityState.Modified;
+			db.SaveChanges();
+			return RedirectToAction("Index");
+			//}
 		}
 	}
 }

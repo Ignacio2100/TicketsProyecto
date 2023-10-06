@@ -37,8 +37,10 @@
     @using (Html.BeginForm("AtenderTicket", "PanelDeControl", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <input name="ClienteId" type="number" value="@Model.ClienteId" hidden/>
-        <input name="ProcesoId" type="number" value="@Model.ProcesoId" hidden/>
+        <input name="Id" type="number" value="@Model.Id" hidden />
+        <input name="ClienteId" type="number" value="@Model.ClienteId" hidden />
+        <input name="Fecha" type="date" value="@Model.Fecha" hidden />
+        <input name="ProcesoId" type="number" value="@Model.ProcesoId" hidden />
         <textarea name="Nota" class="form-control" required></textarea>
         <button type="submit" class="btn btn-primary">Guardar</button>
     }

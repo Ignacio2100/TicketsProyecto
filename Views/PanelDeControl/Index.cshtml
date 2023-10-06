@@ -12,8 +12,8 @@
                 Ticket
             </div>
             <div class="card-body">
-                <h5 class="card-title">Ticket #@Model.First().Id en espera</h5>
-                @Html.ActionLink($"Aceptar", "AtenderTicket", "PanelDeControl", new { id = Model.First().Id }, new { @class = "btn btn-primary" })
+                <h5 class="card-title">Ticket #@Model.First(t => t.Nota == null).Id en espera</h5>
+                @Html.ActionLink($"Aceptar", "AtenderTicket", "PanelDeControl", new { id = Model.First(t => t.Nota == null).Id }, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
@@ -24,21 +24,21 @@
 
 @section Scripts{
     <script>
-        //$(document).ready(function () {
-        //    $.ajax({
-        //        type: 'GET',
-        //        url: '/PanelDeControl/TicketsEnEsperaPartialView',
-        //        success: function (data) {
-        //            $('#TicketsEnEsperaContainer').html(data);
-        //        }
-        //    });
-        //    $.ajax({
-        //        type: 'GET',
-        //        url: '/PanelDeControl/TicketsAtendidosPartialView',
-        //        success: function (data) {
-        //            $('#TicketsAtendidosContainer').html(data);
-        //        }
-        //    });
-        //});
+            //$(document).ready(function () {
+            //    $.ajax({
+            //        type: 'GET',
+            //        url: '/PanelDeControl/TicketsEnEsperaPartialView',
+            //        success: function (data) {
+            //            $('#TicketsEnEsperaContainer').html(data);
+            //        }
+            //    });
+            //    $.ajax({
+            //        type: 'GET',
+            //        url: '/PanelDeControl/TicketsAtendidosPartialView',
+            //        success: function (data) {
+            //            $('#TicketsAtendidosContainer').html(data);
+            //        }
+            //    });
+            //});
     </script>
 }
