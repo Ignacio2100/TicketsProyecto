@@ -1,0 +1,45 @@
+﻿@model Ticket.Models.Ticket
+<h2>Atención de ticket</h2>
+<div class="">
+    <h3>Información del cliente</h3>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </dt>
+        <dd>
+            @Model.Cliente.Nombre @Model.Cliente.Apellido
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Telefono)
+        </dt>
+        <dd>
+            @Model.Cliente.Telefono
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Dpi)
+        </dt>
+        <dd>
+            @Model.Cliente.Dpi
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.TipoGenero.Genero)
+        </dt>
+        <dd>
+            @Model.Cliente.TipoGenero.Genero
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Proceso.Descripcion)
+        </dt>
+        <dd>
+            @Model.Proceso.Descripcion
+        </dd>
+    </dl>
+    @using (Html.BeginForm("AtenderTicket", "PanelDeControl", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input name="ClienteId" type="number" value="@Model.ClienteId" hidden/>
+        <input name="ProcesoId" type="number" value="@Model.ProcesoId" hidden/>
+        <textarea name="Nota" class="form-control" required></textarea>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    }
+</div>

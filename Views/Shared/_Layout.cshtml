@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Sistema de Tickets</title>
-    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
@@ -38,6 +37,10 @@
                     <li class="nav-item">
                         @Html.ActionLink("Tickets", "Buscar", "Tickets", new { area = "" }, new { @class = "nav-link" })
                     </li>
+                    @if (Session["uid"] != null)
+                    {
+                        <li>@Html.ActionLink("Panel de control", "Index", "PanelDeControl", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
                 </ul>
                 <ul class="navbar-nav">
                     @if (Session["uid"] != null)
@@ -56,7 +59,8 @@
     <div class="container body-content">
         @RenderBody()
     </div>
-  
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", false)
 </body>
 </html>

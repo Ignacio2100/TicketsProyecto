@@ -9,21 +9,22 @@
 
 namespace Ticket.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Proceso
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Proceso()
-        {
-            this.Tickets = new HashSet<Ticket>();
-        }
-    
-        public int Id { get; set; }
-        public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Tickets { get; set; }
-    }
+	using System.Collections.Generic;
+	using System.ComponentModel;
+
+	public partial class Proceso
+	{
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+		public Proceso()
+		{
+			this.Tickets = new HashSet<Ticket>();
+		}
+
+		public int Id { get; set; }
+		[DisplayName("Descripción")]
+		public string Descripcion { get; set; }
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<Ticket> Tickets { get; set; }
+	}
 }

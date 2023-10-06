@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Ticket.Models.Ticket>
+
+<h2>Tickets en espera</h2>
+<div class="list-group">
+    @foreach (var ticket in Model)
+    {
+        @Html.ActionLink($"Ticket {ticket.Id}", "Agregar", "PanelDeControl", null, new { @class = "list-group-item list-group-item-action" })
+    }
+</div>
