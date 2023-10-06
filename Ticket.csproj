@@ -130,6 +130,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProcesoController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipoGeneroController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -166,6 +167,7 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProcesoCLS.cs" />
+    <Compile Include="Models\ReporteCLS.cs" />
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -290,6 +292,7 @@
     <Content Include="Views\Tickets\Buscar.cshtml" />
     <Content Include="Views\Tickets\Crear.cshtml" />
     <Content Include="Views\Tickets\Comprobante.cshtml" />
+    <Content Include="Views\Reporte\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
