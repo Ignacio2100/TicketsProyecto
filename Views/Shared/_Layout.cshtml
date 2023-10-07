@@ -58,10 +58,29 @@
         </div>
     </nav>
     <div class="container body-content">
+        @{
+            var errorMessage = TempData["ErrorMessage"]?.ToString();
+            var successMessage = TempData["SuccessMessage"]?.ToString();
+        }
+        @if (!string.IsNullOrWhiteSpace(successMessage))
+        {
+            <div class="alert alert-success mt-2">
+                @successMessage
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        else if (!string.IsNullOrWhiteSpace(errorMessage))
+        {
+            <div class="alert alert-danger mt-2">
+                @errorMessage
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
         @RenderBody()
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="~/Scripts/scripts.js"></script>
     @RenderSection("Scripts", false)
 </body>
 </html>

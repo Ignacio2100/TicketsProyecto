@@ -15,7 +15,7 @@ namespace Ticket.Controllers
 
 	public class TicketsController : Controller
 	{
-		private yanill_ticketsEntities db = new yanill_ticketsEntities();
+		private readonly yanill_ticketsEntities db = new yanill_ticketsEntities();
 
 		public async Task<ActionResult> Index()
 		{
@@ -169,14 +169,29 @@ namespace Ticket.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Crear(Tickets model)
 		{
-			if (ModelState.IsValid)
+			try
 			{
-				model.Fecha = DateTime.Now;
-				var newTicket = db.Tickets.Add(model);
-				db.SaveChanges();
-				var cliente = db.Clientes.First(c => c.Id == newTicket.ClienteId);
-				newTicket.Cliente = cliente;
-				return View("Comprobante", newTicket);
+				if (ModelState.IsValid)
+				{
+					model.Fecha = DateTime.Now;
+					var newTicket = db.Tickets.Add(model);
+					db.SaveChanges();
+					TempData["SuccessMessage"] = "Ticket creado";
+					var cliente = db.Clientes.First(c => c.Id == newTicket.ClienteId);
+					newTicket.Cliente = cliente;
+					return View("Comprobante", newTicket);
+				}
+			}
+			catch (Exception e)
+			{
+				if (e.InnerException == null)
+				{
+					TempData["ErrorMessage"] = $"Error al crear el ticket: {e.Message}";
+				}
+				else
+				{
+					TempData["ErrorMessage"] = $"Error al crear el ticket: {e.InnerException.Message}";
+				}
 			}
 			ViewBag.Procesos = new SelectList(db.Procesoes, "Id", "Descripcion");
 			return View("Crear", model);
