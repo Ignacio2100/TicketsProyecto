@@ -1,18 +1,17 @@
-﻿using System.Linq;
+﻿using Microsoft.Ajax.Utilities;
+using System.Linq;
 using System.Web.Mvc;
-using Ticket.Models;
-using Tickets = Ticket.Models.Ticket;
 using System.Diagnostics;
-using Microsoft.Ajax.Utilities;
 using System;
 using System.Data.Entity;
-using System.Net.Sockets;
+using Ticket.Models;
+using Tickets = Ticket.Models.Ticket;
 
 namespace Ticket.Controllers
 {
 	public class PanelDeControlController : Controller
 	{
-		private yanill_ticketsEntities db = new yanill_ticketsEntities();
+		private readonly yanill_ticketsEntities db = new yanill_ticketsEntities();
 
 		public ActionResult Index()
 		{
@@ -58,21 +57,20 @@ namespace Ticket.Controllers
 				model.Proceso = proceso;
 				return View(model);
 			}
-			//var uid = Session["uid"];
-			//if (uid == null)
-			//{
-			//	return RedirectToAction("Index", "Login");
-			//}
-			//else
-			//{
-			//var userId = Convert.ToInt32(uid.ToString());
-			//model.UsuarioId = userId;
-			Debug.WriteLine("about to save to db");
-			model.Fecha = DateTime.Now;
-			db.Entry(model).State = EntityState.Modified;
-			db.SaveChanges();
-			return RedirectToAction("Index");
-			//}
+			var uid = Session["uid"];
+			if (uid == null)
+			{
+				return RedirectToAction("Index", "Login");
+			}
+			else
+			{
+				var userId = Convert.ToInt32(uid.ToString());
+				model.UsuarioId = userId;
+				model.Fecha = DateTime.Now;
+				db.Entry(model).State = EntityState.Modified;
+				db.SaveChanges();
+				return RedirectToAction("Index");
+			}
 		}
 	}
 }

@@ -138,7 +138,7 @@ namespace Ticket.Controllers
 					else if (usuario.TipoUsuario1.Id == 2)
 					{
 						// Enviar a la ruta correcta si es empleado
-						return RedirectToAction("Index", "Cliente");
+						return RedirectToAction("Index", "PanelDeControl");
 					}
 					else
 					{
