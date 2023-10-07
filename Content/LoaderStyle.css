@@ -1,0 +1,4 @@
+﻿/* Ocultar el loader por defecto */
+#loader {
+    display: none;
+}

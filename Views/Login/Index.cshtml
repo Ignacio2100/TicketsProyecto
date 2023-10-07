@@ -3,6 +3,21 @@
 @{
     ViewBag.Title = "Iniciar sesión";
 }
+<link href="~/Content/LoaderStyle.css" rel="stylesheet" />
+
+<div id="loader-modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+                <p class="mt-2">Cargando...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container mt-5">
     <div class="row justify-content-center mt-5">
@@ -44,3 +59,5 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js" integrity="sha384-woaJ8Txv4w6GQZk5lHZbF5f5Tbmi5btk5sPTUuUibX39rFE5zj5FCf9F5t5F5H5D" crossorigin="anonymous"></script>
+<script src="~/Scripts/loaderScript.js"></script>
+<script src="~/Scripts/ShowLoader.js"></script>
