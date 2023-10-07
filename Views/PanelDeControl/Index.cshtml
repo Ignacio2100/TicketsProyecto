@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Ticket.Models.Ticket>
 
 <div class="row p-3">
+    <div id="fechaHora" class="text-center" style="font-size: 18px;"></div>
     <div class="col-md-3">
         <div class="bg-warning p-2 rounded" style="--bs-bg-opacity: .5;">
             <h4 class="mb-3 text-center">Tickets en Espera</h4>
@@ -29,21 +30,32 @@
 
 @section Scripts{
     <script>
-                //$(document).ready(function () {
-                //    $.ajax({
-                //        type: 'GET',
-                //        url: '/PanelDeControl/TicketsEnEsperaPartialView',
-                //        success: function (data) {
-                //            $('#TicketsEnEsperaContainer').html(data);
-                //        }
-                //    });
-                //    $.ajax({
-                //        type: 'GET',
-                //        url: '/PanelDeControl/TicketsAtendidosPartialView',
-                //        success: function (data) {
-                //            $('#TicketsAtendidosContainer').html(data);
-                //        }
-                //    });
-                //});
+        //$(document).ready(function () {
+        //    $.ajax({
+        //        type: 'GET',
+        //        url: '/PanelDeControl/TicketsEnEsperaPartialView',
+        //        success: function (data) {
+        //            $('#TicketsEnEsperaContainer').html(data);
+        //        }
+        //    });
+        //    $.ajax({
+        //        type: 'GET',
+        //        url: '/PanelDeControl/TicketsAtendidosPartialView',
+        //        success: function (data) {
+        //            $('#TicketsAtendidosContainer').html(data);
+        //        }
+        //    });
+        //});
+            function mostrarFechaHora() {
+            var divFechaHora = document.getElementById("fechaHora");
+            var fechaHoraActual = new Date();
+            var opcionesFechaHora = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+            var fechaHoraFormateada = fechaHoraActual.toLocaleDateString('es-ES', opcionesFechaHora);
+            divFechaHora.textContent = "Fecha y Hora Actual: " + fechaHoraFormateada;
+        }
+
+            // Llama a la función inicialmente y luego cada segundo (1000 ms)
+            mostrarFechaHora();
+            setInterval(mostrarFechaHora, 1000);
     </script>
 }
