@@ -11,15 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        table th {
+            background-color: blue; /* Color de fondo azul para los encabezados */
+            color: white; /* Texto en color blanco para los encabezados */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-
         <div class="text-center" style="margin:30px;">
-            <h2>Listado de Personas</h2>    @*Este proces se utilizar para crear tablas y mostrar los resultados*@
+            <h2>Personas Registradas</h2>    @*Este proces se utilizar para crear tablas y mostrar los resultados*@
         </div>
         <table class="table table-bordered table-hover">
-            <thead>
+            <thead class="table-primary">
                 <tr>
                     <th>Codigo </th>
                     <th>Nombres </th>
