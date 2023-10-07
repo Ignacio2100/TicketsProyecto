@@ -1,33 +1,41 @@
 ﻿@model Ticket.Models.Ticket
-<h2 style="text-align: center; margin-top: 40px; color: #007bff;">Ticket en Proceso</h2>
-<h3 style="color: #007bff; text-align: center;">Datos del cliente</h3>
-<div class="container1">
-    <dl class="border p-3" style="display: grid; grid-template-columns: auto 1fr; grid-gap: 10px;">
-        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Nombre)</dt>
-        <dd style="margin-left: 120px;">@Model.Cliente.Nombre @Model.Cliente.Apellido</dd>
-        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Telefono)</dt>
-        <dd style="margin-left: 120px;">@Model.Cliente.Telefono</dd>
-        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Dpi)</dt>
-        <dd style="margin-left: 120px;">@Model.Cliente.Dpi</dd>
-        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.TipoGenero.Genero)</dt>
-        <dd style="margin-left: 120px;">@Model.Cliente.TipoGenero.Genero</dd>
-        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Proceso.Descripcion)</dt>
-        <dd style="margin-left: 120px;">@Model.Proceso.Descripcion</dd>
-    </dl>
-    @using (Html.BeginForm("AtenderTicket", "PanelDeControl", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <div>
-            <form>
-                <input name="Id" type="number" value="@Model.Id" hidden />
-                <input name="ClienteId" type="number" value="@Model.ClienteId" hidden />
-                <input name="Fecha" type="date" value="@Model.Fecha" hidden />
-                <input name="ProcesoId" type="number" value="@Model.ProcesoId" hidden />
-                <textarea name="Nota" class="form-control" placeholder="Comentario" required></textarea>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary mx-auto" style="margin: 20px;">Guardar</button>
-                </div>
-            </form>
-        </div>
-    }
-</div>
+
+@if (Session["uid"] == null)
+{
+    <p class="text-center pt-5">Inicie sesión para continuar.</p> 
+}
+else
+{
+    <h2 style="text-align: center; margin-top: 40px; color: #007bff;">Ticket en Proceso</h2>
+    <h3 style="color: #007bff; text-align: center;">Datos del cliente</h3>
+    <div class="container1">
+        <dl class="border p-3" style="display: grid; grid-template-columns: auto 1fr; grid-gap: 10px;">
+            <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Nombre)</dt>
+            <dd style="margin-left: 120px;">@Model.Cliente.Nombre @Model.Cliente.Apellido</dd>
+            <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Telefono)</dt>
+            <dd style="margin-left: 120px;">@Model.Cliente.Telefono</dd>
+            <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Dpi)</dt>
+            <dd style="margin-left: 120px;">@Model.Cliente.Dpi</dd>
+            <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.TipoGenero.Genero)</dt>
+            <dd style="margin-left: 120px;">@Model.Cliente.TipoGenero.Genero</dd>
+            <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Proceso.Descripcion)</dt>
+            <dd style="margin-left: 120px;">@Model.Proceso.Descripcion</dd>
+        </dl>
+        @using (Html.BeginForm("AtenderTicket", "PanelDeControl", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <form>
+                    <input name="Id" type="number" value="@Model.Id" hidden />
+                    <input name="ClienteId" type="number" value="@Model.ClienteId" hidden />
+                    <input name="Fecha" type="date" value="@Model.Fecha" hidden />
+                    <input name="ProcesoId" type="number" value="@Model.ProcesoId" hidden />
+                    <textarea name="Nota" class="form-control" placeholder="Comentario" required></textarea>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary mx-auto" style="margin: 20px;">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+}

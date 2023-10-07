@@ -12,7 +12,6 @@ using System;
 
 namespace Ticket.Controllers
 {
-
 	public class TicketsController : Controller
 	{
 		private readonly yanill_ticketsEntities db = new yanill_ticketsEntities();
@@ -34,29 +33,6 @@ namespace Ticket.Controllers
 			{
 				return HttpNotFound();
 			}
-			return View(ticket);
-		}
-
-		public ActionResult Create()
-		{
-			ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre");
-			ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre");
-			return View();
-		}
-
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "Id,UsuarioId,ClienteId,Fecha,Nota")] Tickets ticket)
-		{
-			if (ModelState.IsValid)
-			{
-				db.Tickets.Add(ticket);
-				await db.SaveChangesAsync();
-				return RedirectToAction("Index");
-			}
-
-			ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre", ticket.ClienteId);
-			ViewBag.UsuarioId = new SelectList(db.Usuarios, "Id", "Nombre", ticket.UsuarioId);
 			return View(ticket);
 		}
 
@@ -129,11 +105,6 @@ namespace Ticket.Controllers
 			return View();
 		}
 
-		public ActionResult BuscarDPI()
-		{
-			return View();
-		}
-
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult BuscarDPI(string dpi)
@@ -142,6 +113,7 @@ namespace Ticket.Controllers
 			{
 				return RedirectToAction("Crear", new { dpi });
 			}
+			TempData["ErrorMessage"] = $"No existe un cliente con este DPI";
 			return View("Buscar");
 		}
 
@@ -162,6 +134,7 @@ namespace Ticket.Controllers
 					return View("Crear", ticket);
 				}
 			}
+			TempData["ErrorMessage"] = $"No existe un cliente con este DPI";
 			return RedirectToAction("Buscar");
 		}
 
@@ -195,11 +168,6 @@ namespace Ticket.Controllers
 			}
 			ViewBag.Procesos = new SelectList(db.Procesoes, "Id", "Descripcion");
 			return View("Crear", model);
-		}
-
-		public ActionResult Comprobante()
-		{
-			return View();
 		}
 	}
 }
