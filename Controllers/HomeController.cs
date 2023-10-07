@@ -20,11 +20,5 @@ namespace Ticket.Controllers
 			var primerosCincoTickets = tickets.AsEnumerable();
 			return View(primerosCincoTickets);
 		}
-
-		public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
-			return View();
-		}
 	}
 }

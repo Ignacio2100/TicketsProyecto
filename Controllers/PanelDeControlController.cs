@@ -21,23 +21,19 @@ namespace Ticket.Controllers
 
 		public ActionResult TicketsEnEsperaPartialView()
 		{
-			Debug.WriteLine("estamos en TicketsEnEsperaPartialView");
 			var ticketsEnEspera = db.Tickets.Where(t => t.Nota == null).AsEnumerable();
-			Debug.WriteLine(ticketsEnEspera.ToString());
 			return PartialView("_TicketsEnEsperaPartialView", ticketsEnEspera);
 		}
 
 		public ActionResult TicketsAtendidosPartialView()
 		{
-			Debug.WriteLine("estamos en TicketsAtendidosPartialView");
 			var ticketsAtendidos = db.Tickets.Where(t => t.Nota != null).AsEnumerable();
-			Debug.WriteLine(ticketsAtendidos.ToString());
 			return PartialView("_TicketsAtendidosPartialView", ticketsAtendidos);
 		}
 
 		public ActionResult AtenderTicket(int id = 0)
 		{
-			if(id == 0)
+			if (id == 0)
 			{
 				return RedirectToAction("Index");
 			}
@@ -50,8 +46,6 @@ namespace Ticket.Controllers
 		[HttpPost]
 		public ActionResult AtenderTicket(Tickets model)
 		{
-			Debug.Write("es valido: ");
-			Debug.WriteLine(ModelState.IsValid);
 			if (model.Nota.IsNullOrWhiteSpace())
 			{
 				ModelState.AddModelError("Nota", "Nota vacía.");
@@ -68,12 +62,32 @@ namespace Ticket.Controllers
 			}
 			else
 			{
-				var userId = Convert.ToInt32(uid.ToString());
-				model.UsuarioId = userId;
-				model.Fecha = DateTime.Now;
-				db.Entry(model).State = EntityState.Modified;
-				db.SaveChanges();
-				return RedirectToAction("Index");
+				try
+				{
+					var userId = Convert.ToInt32(uid.ToString());
+					model.UsuarioId = userId;
+					model.Fecha = DateTime.Now;
+					db.Entry(model).State = EntityState.Modified;
+					db.SaveChanges();
+					TempData["SuccessMessage"] = $"Se guardó el comentario";
+					return RedirectToAction("Index");
+				}
+				catch (Exception e)
+				{
+					if (e.InnerException == null)
+					{
+						TempData["ErrorMessage"] = $"Error al registrar el ticket: {e.Message}";
+					}
+					else
+					{
+						TempData["ErrorMessage"] = $"Error al registrar el ticket: {e.InnerException.Message}";
+					}
+					var client = db.Clientes.First(c => c.Id == model.ClienteId);
+					var proceso = db.Procesoes.First(p => p.Id == model.ProcesoId);
+					model.Cliente = client;
+					model.Proceso = proceso;
+					return View(model);
+				}
 			}
 		}
 	}

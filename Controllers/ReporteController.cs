@@ -33,5 +33,4 @@ namespace Ticket.Controllers
             return View(ListaReporte);
         }
     }
-
 }
