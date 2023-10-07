@@ -1,44 +1,49 @@
 ﻿@model IEnumerable<Ticket.Models.Ticket>
 
 <div class="row p-3">
-    <div class="col-3">
-        <div id="TicketsEnEsperaContainer">
+    <div class="col-md-3">
+        <div class="bg-warning p-3 rounded">
+            <h4 class="mb-3 text-center">Tickets en Espera</h4>
             @Html.Partial("_TicketsEnEsperaPartialView", Model.Where(t => t.Nota == null))
         </div>
     </div>
-    <div class="col-6" id="TicketActual">
-        <div class="card">
-            <div class="card-header">
-                Ticket
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                Ticket en Curso
             </div>
-            <div class="card-body">
-                <h5 class="card-title">Ticket #@Model.First(t => t.Nota == null).Id en espera</h5>
-                @Html.ActionLink($"Aceptar", "AtenderTicket", "PanelDeControl", new { id = Model.First(t => t.Nota == null).Id }, new { @class = "btn btn-primary" })
+            <div class="card-body text-center">
+                <h5 class="card-title">Ticket #@Model.First(t => t.Nota == null).Id en Espera</h5>
+                @Html.ActionLink("Aceptar", "AtenderTicket", "PanelDeControl", new { id = Model.First(t => t.Nota == null).Id }, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
-    <div class="col-3" id="TicketsAtendidosContainer">
-        @Html.Partial("_TicketsAtendidosPartialView", Model.Where(t => t.Nota != null))
+    <div class="col-md-3">
+        <div class="bg-success p-3 rounded">
+            <h4 class="mb-3 text-center">Tickets Atendidos</h4>
+            @Html.Partial("_TicketsAtendidosPartialView", Model.Where(t => t.Nota != null))
+        </div>
     </div>
 </div>
 
+
 @section Scripts{
     <script>
-            //$(document).ready(function () {
-            //    $.ajax({
-            //        type: 'GET',
-            //        url: '/PanelDeControl/TicketsEnEsperaPartialView',
-            //        success: function (data) {
-            //            $('#TicketsEnEsperaContainer').html(data);
-            //        }
-            //    });
-            //    $.ajax({
-            //        type: 'GET',
-            //        url: '/PanelDeControl/TicketsAtendidosPartialView',
-            //        success: function (data) {
-            //            $('#TicketsAtendidosContainer').html(data);
-            //        }
-            //    });
-            //});
+                //$(document).ready(function () {
+                //    $.ajax({
+                //        type: 'GET',
+                //        url: '/PanelDeControl/TicketsEnEsperaPartialView',
+                //        success: function (data) {
+                //            $('#TicketsEnEsperaContainer').html(data);
+                //        }
+                //    });
+                //    $.ajax({
+                //        type: 'GET',
+                //        url: '/PanelDeControl/TicketsAtendidosPartialView',
+                //        success: function (data) {
+                //            $('#TicketsAtendidosContainer').html(data);
+                //        }
+                //    });
+                //});
     </script>
 }

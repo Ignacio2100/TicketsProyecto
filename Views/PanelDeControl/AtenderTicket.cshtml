@@ -1,38 +1,18 @@
 ﻿@model Ticket.Models.Ticket
-<h2>Atención de ticket</h2>
-<div class="">
-    <h3>Información del cliente</h3>
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cliente.Nombre)
-        </dt>
-        <dd>
-            @Model.Cliente.Nombre @Model.Cliente.Apellido
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cliente.Telefono)
-        </dt>
-        <dd>
-            @Model.Cliente.Telefono
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cliente.Dpi)
-        </dt>
-        <dd>
-            @Model.Cliente.Dpi
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cliente.TipoGenero.Genero)
-        </dt>
-        <dd>
-            @Model.Cliente.TipoGenero.Genero
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Proceso.Descripcion)
-        </dt>
-        <dd>
-            @Model.Proceso.Descripcion
-        </dd>
+<h2 style="text-align: center; margin-top: 80px; color: #007bff;">Atención de Ticket</h2>
+<div class="container1">
+    <h3 style="color: #007bff; text-align: center;">Información del Cliente</h3>
+    <dl style="display: grid; grid-template-columns: auto 1fr; grid-gap: 10px;">
+        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Nombre)</dt>
+        <dd style="margin-left: 120px;">@Model.Cliente.Nombre @Model.Cliente.Apellido</dd>
+        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Telefono)</dt>
+        <dd style="margin-left: 120px;">@Model.Cliente.Telefono</dd>
+        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.Dpi)</dt>
+        <dd style="margin-left: 120px;">@Model.Cliente.Dpi</dd>
+        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Cliente.TipoGenero.Genero)</dt>
+        <dd style="margin-left: 120px;">@Model.Cliente.TipoGenero.Genero</dd>
+        <dt style="font-weight: bold; margin-left: 100px;">@Html.DisplayNameFor(model => model.Proceso.Descripcion)</dt>
+        <dd style="margin-left: 120px;">@Model.Proceso.Descripcion</dd>
     </dl>
     @using (Html.BeginForm("AtenderTicket", "PanelDeControl", FormMethod.Post))
     {
@@ -42,6 +22,6 @@
         <input name="Fecha" type="date" value="@Model.Fecha" hidden />
         <input name="ProcesoId" type="number" value="@Model.ProcesoId" hidden />
         <textarea name="Nota" class="form-control" required></textarea>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" style="margin: 20px;">Guardar</button>
     }
 </div>
