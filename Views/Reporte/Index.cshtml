@@ -1,70 +1,52 @@
 ﻿@using Ticket.Models
 @model List<ReporteCLS>
-@{
-    ViewBag.Title = "Index";
-}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="text-center" style="margin:30px;">
-            <h2>Tickets del Mes</h2>
-        </div>
-
-        <form method="get">
-            <div class="form-group">
-                <label for="mes">Seleccione un Mes:</label>
-                <select id="mes" name="mes" class="form-control">
-                    <option value="0">Seleccione</option>
-                    <option value="1">Enero</option>
-                    <option value="2">Febrero</option>
-                    <option value="3">Marzo</option>
-                    <option value="4">Abril</option>
-                    <option value="5">Mayo</option>
-                    <option value="6">Junio</option>
-                    <option value="7">Julio</option>
-                    <option value="8">Agosto</option>
-                    <option value="9">Septiembre</option>
-                    <option value="10">Octubre</option>
-                    <option value="11">Noviembre</option>
-                    <option value="12">Diciembre</option>
-
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Filtrar</button>
-        </form>
-
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Nombre del Cliente</th>
-                    <th>Proceso</th>
-                    <th>Mes</th>
-                 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.Cliente</td>
-                        <td>@item.Proceso</td>
-                        <td>@item.Mes</td>
-                       
-                    </tr>
-                }
-            </tbody>
-        </table>
-
+<div class="container mt-5">
+    <div class="text-center" style="margin:30px;">
+        <h2>Tickets del Mes</h2>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <form method="get">
+        <div class="form-group">
+            <label for="mes">Seleccione un Mes:</label>
+            <select id="mes" name="mes" class="form-control">
+                <option value="0">Seleccione</option>
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nombre del Cliente</th>
+                <th>Proceso</th>
+                <th>Mes</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Cliente</td>
+                    <td>@item.Proceso</td>
+                    <td>@item.Mes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
