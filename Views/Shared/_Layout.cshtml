@@ -22,18 +22,22 @@
             </button>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="comprasDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Clientes
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="comprasDropdown">
-                            <li>@Html.ActionLink("Creacion", "Agregar", "Cliente", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li>@Html.ActionLink("Listado", "Index", "Cliente", new { area = "" }, new { @class = "dropdown-item" })</li>
-                            <li class="dropdown-divider"></li> <!-- Agregar un separador entre las opciones existentes y las nuevas -->
-                            <li>@Html.ActionLink("Reporte del Mes", "Index", "Reporte", new { area = "" }, new { @class = "dropdown-item" })</li>
+                    @if (Session["uid"] != null)
+                    {
 
-                        </ul>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="comprasDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Clientes
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="comprasDropdown">
+                                <li>@Html.ActionLink("Creacion", "Agregar", "Cliente", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Listado", "Index", "Cliente", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li class="dropdown-divider"></li> <!-- Agregar un separador entre las opciones existentes y las nuevas -->
+                                <li>@Html.ActionLink("Reporte del Mes", "Index", "Reporte", new { area = "" }, new { @class = "dropdown-item" })</li>
+
+                            </ul>
+                        </li>
+                    }
                     <li class="nav-item">
                         @Html.ActionLink("Tickets", "Buscar", "Tickets", new { area = "" }, new { @class = "nav-link" })
                     </li>

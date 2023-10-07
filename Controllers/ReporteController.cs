@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ticket.Models;
 
 namespace Ticket.Controllers
 {
-    public class ReporteController : Controller
+	public class ReporteController : Controller
     {
         // GET: Reporte
         public ActionResult Index(int? mes)

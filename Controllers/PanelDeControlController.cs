@@ -35,8 +35,12 @@ namespace Ticket.Controllers
 			return PartialView("_TicketsAtendidosPartialView", ticketsAtendidos);
 		}
 
-		public ActionResult AtenderTicket(int id)
+		public ActionResult AtenderTicket(int id = 0)
 		{
+			if(id == 0)
+			{
+				return RedirectToAction("Index");
+			}
 			var ticket = db.Tickets.FirstOrDefault(t => t.Id == id);
 			var cliente = db.Clientes.FirstOrDefault(c => c.Id == ticket.ClienteId);
 			ticket.Cliente = cliente;
