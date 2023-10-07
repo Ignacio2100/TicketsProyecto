@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using Ticket.Models;
@@ -9,7 +10,6 @@ namespace Ticket.Controllers
 	{
 		private yanill_ticketsEntities db = new yanill_ticketsEntities();
 
-		// GET: Login
 		public ActionResult Index()
 		{
 			if (Session["uid"] != null)
@@ -26,86 +26,6 @@ namespace Ticket.Controllers
 			return RedirectToAction("Index");
 		}
 
-		[HttpPost]
-		public ActionResult LogoutConfirmed()
-		{
-			Session["uid"] = null;
-			Session["rol"] = null;
-			return RedirectToAction("Index");
-		}
-
-		// GET: Login/Details/5
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
-
-		// GET: Login/Create
-		public ActionResult Create()
-		{
-			return View();
-		}
-
-		// POST: Login/Create
-		[HttpPost]
-		public ActionResult Create(FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add insert logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
-		// GET: Login/Edit/5
-		public ActionResult Edit(int id)
-		{
-			return View();
-		}
-
-		// POST: Login/Edit/5
-		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add update logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
-		// GET: Login/Delete/5
-		public ActionResult Delete(int id)
-		{
-			return View();
-		}
-
-		// POST: Login/Delete/5
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add delete logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
 		public ActionResult Login()
 		{
 			return View("Login");
@@ -116,39 +36,56 @@ namespace Ticket.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var usuario = db.Usuarios.Include(u => u.TipoUsuario1)
+				try
+				{
+					var usuario = db.Usuarios.Include(u => u.TipoUsuario1)
 					.FirstOrDefault(u => u.Nombre == model.Correo && u.Password == model.Contraseña);
-				if (usuario == null)
-				{
-					System.Diagnostics.Debug.WriteLine("Usuario o contraseña incorrecta");
-					return View(model);
-				}
-				else
-				{
-					Session["uid"] = usuario.Id;
-					Session["rol"] = usuario.TipoUsuario;
-
-					// Si el usuario es administrador
-					if (usuario.TipoUsuario1.Id == 1)
+					if (usuario == null)
 					{
-						// Enviar a la ruta correcta si es administrador
-						return RedirectToAction("Index", "Home");
-					}
-					// Si el usuario es empleado
-					else if (usuario.TipoUsuario1.Id == 2)
-					{
-						// Enviar a la ruta correcta si es empleado
-						return RedirectToAction("Index", "PanelDeControl");
+						ModelState.AddModelError("Error", "Usuario o contraseña incorrecta");
+						Debug.WriteLine("Usuario o contraseña incorrecta");
+						return View(model);
 					}
 					else
 					{
-						ModelState.AddModelError("Error", "Tipo de usuario invalido");
-						return View(model);
-					}
+						TempData["SuccessMessage"] = $"Se ha iniciado sesión como: {usuario.Nombre}";
+						Session["uid"] = usuario.Id;
+						Session["usuario"] = usuario.Nombre;
+						Session["rol"] = usuario.TipoUsuario;
 
+						// Si el usuario es administrador
+						if (usuario.TipoUsuario1.Id == 1)
+						{
+							// Enviar a la ruta correcta si es administrador
+							return RedirectToAction("Index", "Home");
+						}
+						// Si el usuario es empleado
+						else if (usuario.TipoUsuario1.Id == 2)
+						{
+							// Enviar a la ruta correcta si es empleado
+							return RedirectToAction("Index", "PanelDeControl");
+						}
+						else
+						{
+							ModelState.AddModelError("Error", "Tipo de usuario invalido");
+							return View(model);
+						}
+					}
+				}
+				catch (System.Exception e)
+				{
+					if (e.InnerException == null)
+					{
+						TempData["ErrorMessage"] = $"Error: {e.Message}";
+					}
+					else
+					{
+						TempData["ErrorMessage"] = $"Error: {e.InnerException.Message}";
+					}
+					return View(model);
 				}
 			}
-			System.Diagnostics.Debug.WriteLine("Modelo no valido");
+			Debug.WriteLine("Modelo no valido");
 			return View(model);
 		}
 	}

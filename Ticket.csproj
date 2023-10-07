@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PanelDeControlController.cs" />
@@ -298,6 +299,7 @@
     <Content Include="Views\PanelDeControl\_TicketsEnEsperaPartialView.cshtml" />
     <Content Include="Views\PanelDeControl\_TicketsAtendidosPartialView.cshtml" />
     <Content Include="Views\PanelDeControl\AtenderTicket.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

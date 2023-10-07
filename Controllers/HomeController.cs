@@ -5,12 +5,12 @@ using Ticket.Models;
 
 namespace Ticket.Controllers
 {
+	[HandleError]
 	public class HomeController : Controller
 	{
 		private readonly yanill_ticketsEntities db = new yanill_ticketsEntities();
 		public ActionResult Index()
 		{
-
 			var tickets = db.Tickets
 				.OrderBy(t => t.Id)
 				.Where(t => t.Nota == null)
@@ -24,14 +24,6 @@ namespace Ticket.Controllers
 		public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";
-
-			return View();
-		}
-
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
 			return View();
 		}
 	}

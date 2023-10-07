@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using Ticket.Models;
 
-
 namespace Ticket.Controllers
 {
     public class ClienteController : Controller
@@ -51,20 +50,15 @@ namespace Ticket.Controllers
             }
         }
 
-      
-
         public void ListarCombos()
         {
             listarComboGenero();
-          
-
         }
         public ActionResult Agregar()
         {
             ListarCombos(); // Llama al método para cargar la lista de géneros en ViewBag
             return View();
         }
-
 
         [HttpPost]
         public ActionResult Agregar(ClienteCLS oClientesCLS) // Este proceso se usa para ingresar Datos a la Tabla Clientes
@@ -84,7 +78,7 @@ namespace Ticket.Controllers
                     if (existeDPI)
                     {
                         ModelState.AddModelError("Dpi", "Ya existe un cliente con este DPI.");
-                        ListarCombos();
+						ListarCombos();
                         return View(oClientesCLS);
                     }   
 
@@ -96,12 +90,10 @@ namespace Ticket.Controllers
                     oCliente.Genero = oClientesCLS.Genero;
                     bd.Clientes.Add(oCliente);
                     bd.SaveChanges();
+                    TempData["SuccessMessage"] = $"Se creó el cliente";
                 }
                 return RedirectToAction("Index", "Cliente");
             }
-
-        }
-
-       
+        }       
     }
 }
