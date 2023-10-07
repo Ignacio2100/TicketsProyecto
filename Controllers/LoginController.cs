@@ -10,12 +10,13 @@ namespace Ticket.Controllers
 	{
 		private yanill_ticketsEntities db = new yanill_ticketsEntities();
 
-		public ActionResult Index()
+		public ActionResult Index(string from = null)
 		{
 			if (Session["uid"] != null)
 			{
 				return RedirectToAction("Index", "Home");
 			}
+			ViewBag.From = from;
 			return View();
 		}
 
@@ -52,7 +53,16 @@ namespace Ticket.Controllers
 						Session["uid"] = usuario.Id;
 						Session["usuario"] = usuario.Nombre;
 						Session["rol"] = usuario.TipoUsuario;
+						if (ViewBag.From != null)
+						{
+							string input = ViewBag.From.ToString();
+							string[] parts = input.Split('-');
 
+							string controllerName = parts[0];
+							string actionName = parts[1];
+
+							return RedirectToAction(actionName, controllerName);
+						}
 						// Si el usuario es administrador
 						if (usuario.TipoUsuario1.Id == 1)
 						{

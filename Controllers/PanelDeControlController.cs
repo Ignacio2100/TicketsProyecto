@@ -15,6 +15,10 @@ namespace Ticket.Controllers
 
 		public ActionResult Index()
 		{
+			if (Session["uid"] == null)
+			{
+				return RedirectToAction("Index", "Login", new { from = "PanelDeControl-Index" });
+			}
 			var tickets = db.Tickets.AsEnumerable();
 			return View(tickets);
 		}
@@ -33,14 +37,40 @@ namespace Ticket.Controllers
 
 		public ActionResult AtenderTicket(int id = 0)
 		{
+			if (Session["uid"] == null)
+			{
+				return RedirectToAction("Index", "Login", new { from = $"PanelDeControl-Index" });
+			}
 			if (id == 0)
 			{
 				return RedirectToAction("Index");
 			}
-			var ticket = db.Tickets.FirstOrDefault(t => t.Id == id);
-			var cliente = db.Clientes.FirstOrDefault(c => c.Id == ticket.ClienteId);
-			ticket.Cliente = cliente;
-			return View(ticket);
+			try
+			{
+				var ticket = db.Tickets.FirstOrDefault(t => t.Id == id);
+				if (ticket != null)
+				{
+					var cliente = db.Clientes.FirstOrDefault(c => c.Id == ticket.ClienteId);
+					ticket.Cliente = cliente;
+					return View(ticket);
+				}
+				else
+				{
+					TempData["ErrorMessage"] = $"Ticket con ID {id} no existe";
+				}
+			}
+			catch (Exception e)
+			{
+				if (e.InnerException == null)
+				{
+					TempData["ErrorMessage"] = $"Error: {e.Message}";
+				}
+				else
+				{
+					TempData["ErrorMessage"] = $"Error: {e.InnerException.Message}";
+				}
+			}
+			return RedirectToAction("Index");
 		}
 
 		[HttpPost]
