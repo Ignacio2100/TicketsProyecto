@@ -1,57 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ticket.Models;
 
 namespace Ticket.Controllers
-{ 
-    public class TipoGeneroController : Controller
-    {
-        // GET: Tipo Genero
-        public ActionResult Index()
-        {
-            List<TipoGeneroCLS> ListaTipoGenero = null;
-            using (var bd = new yanill_ticketsEntities())
-            {
-                ListaTipoGenero = (from Tipo in bd.TipoGeneroes
-                                         select new TipoGeneroCLS
-                                         {
-                                             Id = Tipo.Id,
-                                             Genero = Tipo.Genero
-                                         }
-                                                       ).ToList();
-            }
+{
+	public class TipoGeneroController : Controller
+	{
+		// GET: Tipo Genero
+		public ActionResult Index()
+		{
+			List<TipoGeneroCLS> ListaTipoGenero = null;
+			using (var bd = new yanill_ticketsEntities())
+			{
+				ListaTipoGenero = (from Tipo in bd.TipoGeneroes
+								   select new TipoGeneroCLS
+								   {
+									   Id = Tipo.Id,
+									   Genero = Tipo.Genero
+								   }
+													   ).ToList();
+			}
 
-            return View(ListaTipoGenero);
-        }
+			return View(ListaTipoGenero);
+		}
 
-        public ActionResult Agregar()
-        {
-            return View(); 
-        }
+		public ActionResult Agregar()
+		{
+			return View();
+		}
 
 
-        [HttpPost]
-        public ActionResult Agregar(TipoGeneroCLS oTipoGeneroCLS)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(oTipoGeneroCLS);
-            }
-            else
-            {
-                using (var bd = new yanill_ticketsEntities())
-                {
-                    TipoGenero oTipoGenero = new TipoGenero();
-                    oTipoGenero.Genero = oTipoGeneroCLS.Genero;
-                    bd.TipoGeneroes.Add(oTipoGenero);
-                    bd.SaveChanges();
-                }
-
-            }
-            return RedirectToAction("Index");
-        }
-    }
+		[HttpPost]
+		public ActionResult Agregar(TipoGeneroCLS oTipoGeneroCLS)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(oTipoGeneroCLS);
+			}
+			else
+			{
+				using (var bd = new yanill_ticketsEntities())
+				{
+					TipoGenero oTipoGenero = new TipoGenero();
+					oTipoGenero.Genero = oTipoGeneroCLS.Genero;
+					bd.TipoGeneroes.Add(oTipoGenero);
+					bd.SaveChanges();
+				}
+			}
+			return RedirectToAction("Index");
+		}
+	}
 }

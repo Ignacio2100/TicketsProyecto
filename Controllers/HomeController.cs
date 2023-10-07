@@ -20,5 +20,14 @@ namespace Ticket.Controllers
 			var primerosCincoTickets = tickets.AsEnumerable();
 			return View(primerosCincoTickets);
 		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				db.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 	}
 }

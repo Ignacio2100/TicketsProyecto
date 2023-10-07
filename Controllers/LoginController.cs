@@ -88,5 +88,14 @@ namespace Ticket.Controllers
 			Debug.WriteLine("Modelo no valido");
 			return View(model);
 		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				db.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 	}
 }
