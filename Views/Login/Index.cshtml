@@ -35,17 +35,19 @@
 
                         <div class="mb-3 mx-auto" style="max-width: 300px;">
                             @Html.LabelFor(model => model.Correo, "Correo electrónico", htmlAttributes: new { @class = "form-label" })
-                            @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control", required = "required", type = "email" } })
                             @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="mb-3 mx-auto" style="max-width: 300px;">
                             @Html.LabelFor(model => model.Contraseña, "Contraseña", htmlAttributes: new { @class = "form-label" })
-                            @Html.EditorFor(model => model.Contraseña, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.PasswordFor(model => model.Contraseña, new { @class = "form-control", required = "required" })
                             @Html.ValidationMessageFor(model => model.Contraseña, "", new { @class = "text-danger" })
 
                             <div class="invalid-feedback">Por favor, ingrese una contraseña válida.</div>
                         </div>
+
+
                         <div class="mb-3 text-center">
                             <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
                         </div>

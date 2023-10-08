@@ -1,10 +1,68 @@
-﻿<div class="mx-5 mt-5">
-    <div class="mx-4">
-        <h1 class="display-5">No se ha encontrado la página</h1>
-        <h5>Lo sentimos, pero no se encuentra la página que buscas.</h5>
-        <p>
-            Revisa la ortografía y el uso de mayúsculas en la URL. Si estás teniendo problemas para encontrar una
-            página en Fast Intenet.org, intenta ir a la @Html.ActionLink("página de inicio de Fast Internet", "Index", "Home").
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Página no encontrada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+           
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-image {
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .error-heading {
+            font-size: 36px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .error-suggestion {
+            font-size: 16px;
+            color: #777;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <img src="https://image.freepik.com/free-vector/404-error-abstract-concept-illustration_335657-2243.jpg" alt="Error" class="error-image">
+        <h1 class="error-heading">Error 404 - Página no encontrada</h1>
+        <p class="error-message">Lo sentimos, pero no podemos encontrar la página que estás buscando.</p>
+        <p class="error-suggestion">
+            Por favor, verifica la ortografía y el uso de mayúsculas en la URL. Si sigues teniendo problemas,
+            puedes regresar a la <a href="/">página de inicio</a> de nuestro sitio web.
         </p>
     </div>
-</div>
+</body>
+</html>
