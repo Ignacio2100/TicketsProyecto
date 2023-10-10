@@ -17,7 +17,7 @@
             <div class="ticket-info">Cliente: @ticket.Cliente.Nombre @ticket.Cliente.Apellido</div>
             <div class="ticket-info">Servicio: @ticket.Proceso.Descripcion</div>
             <div class="ticket-action">
-                <a href="https://api.whatsapp.com/send?phone=+502@ticket.Cliente.Telefono" class="btn btn-primary">Llamar al Cliente por WhatsApp</a>
+                <a href="https://api.whatsapp.com/send?phone=@ticket.Cliente.Telefono" class="btn btn-primary">Llamar al Cliente por WhatsApp</a>
             </div>
         </div>
 
