@@ -2,27 +2,23 @@
 
 <style>
     /* Estilos personalizados */
-    .container-fluid {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60vh;
-    }
-
     .card {
         background-color: #f7f7f7;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
+        max-width: 400px;
         margin: 0 auto;
         text-align: center;
         padding: 20px;
     }
 
     .card-title {
-        font-size: 24px;
+        font-size: 30px;
         margin-bottom: 20px;
         color: #007bff;
+    }
+    .parrafo{
+        font-size: 20px;
     }
 
     .card-message {
@@ -52,10 +48,11 @@
     }
 </style>
 
-<div class="container-fluid">
+<div class="container">
     <div class="card">
-        <h5 class="card-title">Fast Internet</h5>
-        <p class="card-message">@Model.Cliente.Nombre @Model.Cliente.Apellido, tu solicitud fue realizada con éxito. ¿Deseas imprimir tu comprobante?</p>
+        <h4 class="card-title">Fast Internet</h4>
+        <p class="card-message">@Model.Cliente.Nombre @Model.Cliente.Apellido, tu solicitud fue realizada con éxito.</p>
+        <p class="parrafo"> ¿Deseas imprimir tu comprobante?</p>
         <div class="btn-group">
             <a href="@Url.Action("Buscar")" class="btn btn-primary">Sí</a>
             <a href="@Url.Action("Buscar")" class="btn btn-secondary">No</a>
