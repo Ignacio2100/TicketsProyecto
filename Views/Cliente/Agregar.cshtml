@@ -3,72 +3,58 @@
 @{
     ViewBag.Title = "Agregar";
     List<SelectListItem> listarGenero = (List<SelectListItem>)ViewBag.lista;
-    
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Registro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<div class="container mt-5">
+    <div class="text-center">
+        <i class="fas fa-user fa-5x animate__animated animate__bounce" style="display: block; margin: 0 auto; color: #007bff;"></i>
+        <h2 class="mb-3">Registro de Cliente</h2>
+    </div>
+    <div class="col-md-6 mx-auto">
+        @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
+        {
+            <div class="form-group space-between-elements">
+                @Html.LabelFor(p => p.Nombre)
+                @Html.TextBoxFor(p => p.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
+            </div>
+            <div class="form-group space-between-elements">
+                @Html.LabelFor(p => p.Apellido)
+                @Html.TextBoxFor(p => p.Apellido, new { @class = "form-control" })
+                @Html.ValidationMessage("Apellido", new { @class = "text-danger" })
+            </div>
+            <div class="form-group space-between-elements">
+                @Html.LabelFor(p => p.Dpi)
+                @Html.TextBoxFor(p => p.Dpi, new { @class = "form-control" })
+                @Html.ValidationMessage("Dpi", new { @class = "text-danger" })
+            </div>
 
+            <div class="form-group space-between-elements">
+                @Html.LabelFor(p => p.Telefono)
+                @Html.TextBoxFor(p => p.Telefono, new { @class = "form-control" })
+                @Html.ValidationMessage("Telefono", new { @class = "text-danger" })
+            </div>
 
+            <div class="form-group space-between-elements">
+                @Html.LabelFor(p => p.Genero)
+                @Html.DropDownList("Genero", listarGenero, new { @class = "form-control" })
+                @Html.ValidationMessage("Genero", new { @class = "text-danger" })
+            </div>
+
+            <div style="text-align: center; margin: 20px; padding: 10px;">
+                <input type="submit" class="btn btn-success" value="Enviar" style="margin-right:25px;" />
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Styles{
     <style>
         /* Agregar estilo personalizado */
         .space-between-elements {
             margin-bottom: 20px; /* Añadir espacio entre elementos */
         }
     </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="text-center">
-            <i class="fas fa-user fa-5x animate__animated animate__bounce" style="display: block; margin: 0 auto; color: #007bff;"></i>
-            <h2 class="mb-3">Registro de Cliente</h2>
-        </div>
-        <div class="col-md-6 mx-auto">
-            @using (Html.BeginForm("Agregar", "Cliente", FormMethod.Post))
-            {
-                <div class="form-group space-between-elements">
-                    @Html.LabelFor(p => p.Nombre)
-                    @Html.TextBoxFor(p => p.Nombre, new { @class = "form-control" })
-                    @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
-                </div>
-                <div class="form-group space-between-elements">
-                    @Html.LabelFor(p => p.Apellido)
-                    @Html.TextBoxFor(p => p.Apellido, new { @class = "form-control" })
-                    @Html.ValidationMessage("Apellido", new { @class = "text-danger" })
-                </div>
-                <div class="form-group space-between-elements">
-                    @Html.LabelFor(p => p.Dpi)
-                    @Html.TextBoxFor(p => p.Dpi, new { @class = "form-control" })
-                    @Html.ValidationMessage("Dpi", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group space-between-elements">
-                    @Html.LabelFor(p => p.Telefono)
-                    @Html.TextBoxFor(p => p.Telefono, new { @class = "form-control" })
-                    @Html.ValidationMessage("Telefono", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group space-between-elements">
-                    @Html.LabelFor(p => p.Genero)
-                    @Html.DropDownList("Genero", listarGenero, new { @class = "form-control" })
-                    @Html.ValidationMessage("Genero", new { @class = "text-danger" })
-                </div>
-
-                <div style="text-align: center; margin: 20px; padding: 10px;">
-                    <input type="submit" class="btn btn-success" value="Enviar" style="margin-right:25px;" />
-                    @Html.ActionLink("Cancelar", "Index", "Home", null, new { @class = "btn btn-danger" })
-                </div>
-            }
-
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+}

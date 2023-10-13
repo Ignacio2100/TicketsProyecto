@@ -3,13 +3,13 @@
 <div class="row py-3">
     <div id="fechaHora" class="text-center pb-3" style="font-size: 18px;"></div>
     <div class="col-md-3">
-        <div class="bg-warning p-2 rounded" style="--bs-bg-opacity: .5; max-height: 450px; overflow-y: auto;">
-            <h4 class="mb-3 text-center">Tickets en Espera</h4>
-            @Html.Partial("_TicketsEnEsperaPartialView", Model.Where(t => t.Nota == null))
+        <div class="bg-warning p-2 rounded" style="--bs-bg-opacity: .5;">            
+                <h4 class="mb-3 text-center">Tickets en Espera</h4>
+                @Html.Partial("_TicketsEnEsperaPartialView", Model.Where(t => t.Nota == null))
         </div>
     </div>
     <div class="col-md-6 d-flex justify-content-center align-items-center">
-        <div class="card shadow" style="width: 80%; max-width: 400px; padding: 20px;">
+        <div class="card shadow" style="width: 80%; max-width: 400px; padding: 20px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <div class="card-header bg-primary text-white">
                 <h4 class="col text-center">Ticket en Curso</h4>
             </div>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="bg-success p-2 rounded " style="--bs-bg-opacity: .5; max-height: 450px; overflow-y: auto;">
+        <div class="bg-success p-2 rounded " style="--bs-bg-opacity: .5;">
             <h4 class="mb-3 text-center">Tickets Atendidos</h4>
             <div class="scrollable-content">
                 @Html.Partial("_TicketsAtendidosPartialView", Model.Where(t => t.Nota != null))
