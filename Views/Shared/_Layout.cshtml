@@ -45,6 +45,10 @@
                     {
                         <li>@Html.ActionLink("Panel de control", "Index", "PanelDeControl", new { area = "" }, new { @class = "nav-link" })</li>
                     }
+                    @if (Session["uid"] != null && Convert.ToInt32(Session["rol"].ToString()) == 1)
+                    {
+                        <li>@Html.ActionLink("Empleados", "Index", "Empleados", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
                 </ul>
                 <ul class="navbar-nav">
                     @if (Session["uid"] != null)
