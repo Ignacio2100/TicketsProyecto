@@ -27,11 +27,6 @@ namespace Ticket.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public ActionResult Login()
-		{
-			return View("Login");
-		}
-
 		[HttpPost]
 		public ActionResult Login(LoginModel model)
 		{

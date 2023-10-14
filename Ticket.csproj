@@ -132,6 +132,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PanelDeControlController.cs" />
     <Compile Include="Controllers\ProcesoController.cs" />
+    <Compile Include="Controllers\RegistrarseController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TipoGeneroController.cs" />
@@ -299,6 +300,7 @@
     <Content Include="Views\PanelDeControl\_TicketsAtendidosPartialView.cshtml" />
     <Content Include="Views\PanelDeControl\AtenderTicket.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Registrarse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
