@@ -1,1 +1,94 @@
-﻿<div>Registrarse</div>
+﻿
+<style>
+
+    .container {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-container {
+        margin-top: 15px;
+    }
+
+    #terminos-info {
+        display: none;
+        margin-top: 15px;
+    }
+</style>
+<div class="container">
+    <h1 class="text-center">Registro de Nuevo Usuario</h1>
+    <form action="procesar_registro.php" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" class="form-control" id="email" name "email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" class="form-control" id="ciudad" name="ciudad" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Número de Teléfono:</label>
+            <input type="tel" class="form-control" id="telefono" name="telefono" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo_usuario">Tipo de Usuario:</label>
+            <select class="form-control" id="tipo_usuario" name="tipo_usuario">
+                <option value="cliente">Cliente</option>
+                <option value="vendedor">Vendedor</option>
+                <option value="administrador">Administrador</option>
+            </select>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="terminos_condiciones" name="terminos_condiciones" onchange="mostrarTerminosInfo()">
+            <label class="form-check-label" for="terminos_condiciones">Acepta los términos y condiciones de la empresa</label>
+        </div>
+
+        <div id="terminos-info">
+            <h4>Términos y Condiciones</h4>
+            <p>¡Bienvenido a nuestra plataforma de acceso a Internet! Antes de comenzar, es importante que comprendas y aceptes nuestros términos y condiciones. A continuación, se detallan las reglas y pautas para el uso de nuestros servicios:</p>
+
+            <p><strong>Confidencialidad de los Datos:</strong> En nuestra empresa Fast Internet, nos tomamos muy en serio la confidencialidad de los datos de nuestros clientes. Toda la información que nos proporcionas se guarda de manera segura y se utiliza únicamente con el propósito de brindarte acceso a Internet. No compartiremos, venderemos ni divulgaremos tus datos personales a terceros sin tu consentimiento explícito.</p>
+
+            <p><strong>Uso Responsable:</strong> Te comprometes a utilizar nuestros servicios de acceso a Internet de manera responsable y ética. No debes utilizarlos para actividades ilegales, inmorales o que violen los derechos de otros usuarios o de terceros.</p>
+
+            <p><strong>Control de Registros de Clientes:</strong> Utilizamos un sistema de control de registros de clientes para garantizar un acceso seguro y confiable a Internet. Esto puede incluir el registro de tus actividades y datos relacionados con la autenticación y el uso de nuestros servicios.</p>
+
+            <p><strong>Aceptación de los Términos:</strong> Al marcar la casilla de aceptación de los términos y condiciones, reconoces que has leído, entendido y aceptado todos los términos aquí expuestos. Si no estás de acuerdo con estos términos, no podrás utilizar nuestros servicios.</p>
+
+            <p>Estos son solo algunos de los aspectos clave de nuestros términos y condiciones. Te invitamos a leer el documento completo, que proporciona una descripción detallada de nuestros compromisos y expectativas mutuas. Si tienes alguna pregunta o inquietud, no dudes en contactarnos. ¡Gracias por confiar en nosotros para tu acceso a Internet!</p>
+        </div>
+
+
+        <div class="btn-container text-center">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+    </form>
+</div>
+<script>
+        function mostrarTerminosInfo() {
+            var infoDiv = document.getElementById("terminos-info");
+            var checkbox = document.getElementById("terminos_condiciones");
+
+            if (checkbox.checked) {
+                infoDiv.style.display = "block";
+            } else {
+                infoDiv.style.display = "none";
+            }
+        }
+</script>
