@@ -1,7 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Ticket.Models;
+using Tickets = Ticket.Models.Ticket;
+
 
 namespace Ticket.Controllers
 {
@@ -19,6 +22,27 @@ namespace Ticket.Controllers
 				.Take(5);
 			var primerosCincoTickets = tickets.AsEnumerable();
 			return View(primerosCincoTickets);
+		}
+
+		public ActionResult Test(string dpi = "1234567891234")
+		{
+			if (true)
+			{
+				var cliente = db.Clientes.FirstOrDefault(c => c.Dpi == dpi);
+
+				if (cliente != null)
+				{
+					var ticket = new Tickets
+					{
+						ClienteId = cliente.Id,
+						Cliente = cliente,
+					};
+					ViewBag.Procesos = new SelectList(db.Procesoes, "Id", "Descripcion");
+					return View("Test", ticket);
+				}
+			}
+			TempData["ErrorMessage"] = $"No existe un cliente con este DPI";
+			return RedirectToAction("Buscar");
 		}
 
 		protected override void Dispose(bool disposing)
