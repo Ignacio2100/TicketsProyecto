@@ -13,8 +13,8 @@ namespace Ticket.Controllers
             List<ClienteCLS> listaCliente = null;
             using (var bd = new yanill_ticketsEntities())
             {
-                listaCliente = (from Clientes in bd.Clientes
-                                join Tipo in bd.TipoGeneroes
+                listaCliente = (from Clientes in bd.Cliente
+                                join Tipo in bd.TipoGenero
                                 on Clientes.Genero equals Tipo.Id
                                 select new ClienteCLS
                                 {
@@ -38,7 +38,7 @@ namespace Ticket.Controllers
             List<SelectListItem> listarGenero;
             using (var bd = new yanill_ticketsEntities())
             {
-                listarGenero = (from TipoGenero in bd.TipoGeneroes
+                listarGenero = (from TipoGenero in bd.TipoGenero
                                 select new SelectListItem
                                 {
                                     Text = TipoGenero.Genero,
@@ -73,7 +73,7 @@ namespace Ticket.Controllers
                 using (var bd = new yanill_ticketsEntities())
                 {
                     // Verificar si ya existe un cliente con el mismo DPI
-                    bool existeDPI = bd.Clientes.Any(c => c.Dpi == oClientesCLS.Dpi);
+                    bool existeDPI = bd.Cliente.Any(c => c.Dpi == oClientesCLS.Dpi);
 
                     if (existeDPI)
                     {
@@ -88,7 +88,7 @@ namespace Ticket.Controllers
                     oCliente.Dpi = oClientesCLS.Dpi;
                     oCliente.Telefono = oClientesCLS.Telefono;
                     oCliente.Genero = oClientesCLS.Genero;
-                    bd.Clientes.Add(oCliente);
+                    bd.Cliente.Add(oCliente);
                     bd.SaveChanges();
                     TempData["SuccessMessage"] = $"Se creó el cliente";
                 }

@@ -25,13 +25,15 @@ namespace Ticket.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cliente> Clientes { get; set; }
-        public virtual DbSet<Empleado> Empleadoes { get; set; }
-        public virtual DbSet<Empresa> Empresas { get; set; }
-        public virtual DbSet<Proceso> Procesoes { get; set; }
-        public virtual DbSet<Ticket> Tickets { get; set; }
-        public virtual DbSet<TipoGenero> TipoGeneroes { get; set; }
-        public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Empleado> Empleado { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<EstadoTicket> EstadoTicket { get; set; }
+        public virtual DbSet<Proceso> Proceso { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Ticket> Ticket { get; set; }
+        public virtual DbSet<TipoGenero> TipoGenero { get; set; }
+        public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

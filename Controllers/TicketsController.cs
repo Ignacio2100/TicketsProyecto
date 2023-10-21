@@ -16,7 +16,7 @@ namespace Ticket.Controllers
 
 		public async Task<ActionResult> Index()
 		{
-			var tickets = db.Tickets.Include(t => t.Cliente).Include(t => t.Usuario);
+			var tickets = db.Ticket.Include(t => t.Cliente).Include(t => t.Usuario);
 			return View(await tickets.ToListAsync());
 		}
 
@@ -41,7 +41,7 @@ namespace Ticket.Controllers
 		{
 			if (!dpi.IsNullOrWhiteSpace() && Regex.IsMatch(dpi, @"^\d+$") && dpi.Length == 13)
 			{
-				var cliente = db.Clientes.FirstOrDefault(c => c.Dpi == dpi);
+				var cliente = db.Cliente.FirstOrDefault(c => c.Dpi == dpi);
 
 				if (cliente != null)
 				{
@@ -50,7 +50,7 @@ namespace Ticket.Controllers
 						ClienteId = cliente.Id,
 						Cliente = cliente,
 					};
-					ViewBag.Procesos = new SelectList(db.Procesoes, "Id", "Descripcion");
+					ViewBag.Procesos = new SelectList(db.Proceso, "Id", "Descripcion");
 					return View("Crear", ticket);
 				}
 			}
@@ -66,11 +66,11 @@ namespace Ticket.Controllers
 			{
 				if (ModelState.IsValid)
 				{
-					model.Fecha = DateTime.Now;
-					var newTicket = db.Tickets.Add(model);
+					model.FechaCreacion = DateTime.Now;
+					var newTicket = db.Ticket.Add(model);
 					db.SaveChanges();
 					TempData["SuccessMessage"] = "Ticket creado";
-					var cliente = db.Clientes.First(c => c.Id == newTicket.ClienteId);
+					var cliente = db.Cliente.First(c => c.Id == newTicket.ClienteId);
 					newTicket.Cliente = cliente;
 					return View("Comprobante", newTicket);
 				}
@@ -86,7 +86,7 @@ namespace Ticket.Controllers
 					TempData["ErrorMessage"] = $"Error al crear el ticket: {e.InnerException.Message}";
 				}
 			}
-			ViewBag.Procesos = new SelectList(db.Procesoes, "Id", "Descripcion");
+			ViewBag.Procesos = new SelectList(db.Proceso, "Id", "Descripcion");
 			return View("Crear", model);
 		}
 

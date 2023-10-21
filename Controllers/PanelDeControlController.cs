@@ -19,19 +19,19 @@ namespace Ticket.Controllers
 			{
 				return RedirectToAction("Index", "Login", new { from = "PanelDeControl-Index" });
 			}
-			var tickets = db.Tickets.AsEnumerable();
+			var tickets = db.Ticket.AsEnumerable();
 			return View(tickets);
 		}
 
 		public ActionResult TicketsEnEsperaPartialView()
 		{
-			var ticketsEnEspera = db.Tickets.Where(t => t.Nota == null).AsEnumerable();
+			var ticketsEnEspera = db.Ticket.Where(t => t.Nota == null).AsEnumerable();
 			return PartialView("_TicketsEnEsperaPartialView", ticketsEnEspera);
 		}
 
 		public ActionResult TicketsAtendidosPartialView()
 		{
-			var ticketsAtendidos = db.Tickets.Where(t => t.Nota != null).AsEnumerable();
+			var ticketsAtendidos = db.Ticket.Where(t => t.Nota != null).AsEnumerable();
 			return PartialView("_TicketsAtendidosPartialView", ticketsAtendidos);
 		}
 
@@ -47,10 +47,10 @@ namespace Ticket.Controllers
 			}
 			try
 			{
-				var ticket = db.Tickets.FirstOrDefault(t => t.Id == id);
+				var ticket = db.Ticket.FirstOrDefault(t => t.Id == id);
 				if (ticket != null)
 				{
-					var cliente = db.Clientes.FirstOrDefault(c => c.Id == ticket.ClienteId);
+					var cliente = db.Cliente.FirstOrDefault(c => c.Id == ticket.ClienteId);
 					ticket.Cliente = cliente;
 					return View(ticket);
 				}
@@ -79,8 +79,8 @@ namespace Ticket.Controllers
 			if (model.Nota.IsNullOrWhiteSpace())
 			{
 				ModelState.AddModelError("Nota", "Nota vacía.");
-				var client = db.Clientes.First(c => c.Id == model.ClienteId);
-				var proceso = db.Procesoes.First(p => p.Id == model.ProcesoId);
+				var client = db.Cliente.First(c => c.Id == model.ClienteId);
+				var proceso = db.Proceso.First(p => p.Id == model.ProcesoId);
 				model.Cliente = client;
 				model.Proceso = proceso;
 				return View(model);
@@ -96,7 +96,7 @@ namespace Ticket.Controllers
 				{
 					var userId = Convert.ToInt32(uid.ToString());
 					model.UsuarioId = userId;
-					model.Fecha = DateTime.Now;
+					model.FechaCreacion = DateTime.Now;
 					db.Entry(model).State = EntityState.Modified;
 					db.SaveChanges();
 					TempData["SuccessMessage"] = $"Se guardó el comentario";
@@ -112,8 +112,8 @@ namespace Ticket.Controllers
 					{
 						TempData["ErrorMessage"] = $"Error al registrar el ticket: {e.InnerException.Message}";
 					}
-					var client = db.Clientes.First(c => c.Id == model.ClienteId);
-					var proceso = db.Procesoes.First(p => p.Id == model.ProcesoId);
+					var client = db.Cliente.First(c => c.Id == model.ClienteId);
+					var proceso = db.Proceso.First(p => p.Id == model.ProcesoId);
 					model.Cliente = client;
 					model.Proceso = proceso;
 					return View(model);

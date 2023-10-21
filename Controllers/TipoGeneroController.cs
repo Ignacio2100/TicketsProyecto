@@ -13,7 +13,7 @@ namespace Ticket.Controllers
 			List<TipoGeneroCLS> ListaTipoGenero = null;
 			using (var bd = new yanill_ticketsEntities())
 			{
-				ListaTipoGenero = (from Tipo in bd.TipoGeneroes
+				ListaTipoGenero = (from Tipo in bd.TipoGenero
 								   select new TipoGeneroCLS
 								   {
 									   Id = Tipo.Id,
@@ -44,7 +44,7 @@ namespace Ticket.Controllers
 				{
 					TipoGenero oTipoGenero = new TipoGenero();
 					oTipoGenero.Genero = oTipoGeneroCLS.Genero;
-					bd.TipoGeneroes.Add(oTipoGenero);
+					bd.TipoGenero.Add(oTipoGenero);
 					bd.SaveChanges();
 				}
 			}

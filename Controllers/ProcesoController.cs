@@ -12,7 +12,7 @@ namespace Ticket.Controllers
 			List<ProcesoCLS> ListaProceso = null;
 			using (var bd = new yanill_ticketsEntities())
 			{
-				ListaProceso = (from Tipo in bd.Procesoes
+				ListaProceso = (from Tipo in bd.Proceso
 								select new ProcesoCLS
 								{
 									Id = Tipo.Id,
@@ -42,7 +42,7 @@ namespace Ticket.Controllers
 				{
 					Proceso oProceso = new Proceso();
 					oProceso.Descripcion = oProcesoCLS.Descripcion;
-					bd.Procesoes.Add(oProceso);
+					bd.Proceso.Add(oProceso);
 					bd.SaveChanges();
 				}
 			}

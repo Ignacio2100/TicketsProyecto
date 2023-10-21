@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6fbe01ae4e50469485c293b297888c49" Name="Diagram1">
+        <EntityTypeShape EntityType="yanill_ticketsModel.Cliente" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.Empleado" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.Empresa" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.EstadoTicket" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.Proceso" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.Ticket" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.TipoGenero" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="yanill_ticketsModel.Usuario" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="yanill_ticketsModel.FK__Cliente__Genero__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="yanill_ticketsModel.FK__Ticket__ClienteI__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="yanill_ticketsModel.FK__Usuario__Emplead__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="yanill_ticketsModel.FK__Usuario__Empresa__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="yanill_ticketsModel.FK_Ticket_EstadoTicket" ManuallyRouted="false" />
+        <AssociationConnector Association="yanill_ticketsModel.FK__Ticket__ProcesoI__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="yanill_ticketsModel.FK__Ticket__UsuarioI__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="yanill_ticketsModel.FK__Usuario__TipoUsu__60A75C0F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

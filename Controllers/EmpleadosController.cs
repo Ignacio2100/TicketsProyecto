@@ -13,7 +13,7 @@ namespace Ticket.Controllers
         // GET: Empleados
         public async Task<ActionResult> Index()
         {
-            return View(await db.Empleadoes.ToListAsync());
+            return View(await db.Empleado.ToListAsync());
         }
 
         // GET: Empleados/Details/5
@@ -23,7 +23,7 @@ namespace Ticket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = await db.Empleadoes.FindAsync(id);
+            Empleado empleado = await db.Empleado.FindAsync(id);
             if (empleado == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace Ticket.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Empleadoes.Add(empleado);
+                db.Empleado.Add(empleado);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -61,7 +61,7 @@ namespace Ticket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = await db.Empleadoes.FindAsync(id);
+            Empleado empleado = await db.Empleado.FindAsync(id);
             if (empleado == null)
             {
                 return HttpNotFound();
@@ -92,7 +92,7 @@ namespace Ticket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = await db.Empleadoes.FindAsync(id);
+            Empleado empleado = await db.Empleado.FindAsync(id);
             if (empleado == null)
             {
                 return HttpNotFound();
@@ -105,8 +105,8 @@ namespace Ticket.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Empleado empleado = await db.Empleadoes.FindAsync(id);
-            db.Empleadoes.Remove(empleado);
+            Empleado empleado = await db.Empleado.FindAsync(id);
+            db.Empleado.Remove(empleado);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

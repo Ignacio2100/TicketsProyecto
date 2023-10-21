@@ -17,7 +17,7 @@ namespace Ticket.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Tickets = new HashSet<Ticket>();
+            this.Ticket = new HashSet<Ticket>();
         }
     
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace Ticket.Models
         public virtual Empleado Empleado { get; set; }
         public virtual Empresa Empresa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<Ticket> Ticket { get; set; }
         public virtual TipoUsuario TipoUsuario1 { get; set; }
     }
 }

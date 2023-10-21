@@ -17,7 +17,7 @@ namespace Ticket.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empleado()
         {
-            this.Usuarios = new HashSet<Usuario>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace Ticket.Models
         public string Telefono { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

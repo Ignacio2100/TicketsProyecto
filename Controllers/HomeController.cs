@@ -14,7 +14,7 @@ namespace Ticket.Controllers
 		private readonly yanill_ticketsEntities db = new yanill_ticketsEntities();
 		public ActionResult Index()
 		{
-			var tickets = db.Tickets
+			var tickets = db.Ticket
 				.OrderBy(t => t.Id)
 				.Where(t => t.Nota == null)
 				.Include(t => t.Cliente)
@@ -28,7 +28,7 @@ namespace Ticket.Controllers
 		{
 			if (true)
 			{
-				var cliente = db.Clientes.FirstOrDefault(c => c.Dpi == dpi);
+				var cliente = db.Cliente.FirstOrDefault(c => c.Dpi == dpi);
 
 				if (cliente != null)
 				{
@@ -37,7 +37,7 @@ namespace Ticket.Controllers
 						ClienteId = cliente.Id,
 						Cliente = cliente,
 					};
-					ViewBag.Procesos = new SelectList(db.Procesoes, "Id", "Descripcion");
+					ViewBag.Procesos = new SelectList(db.Proceso, "Id", "Descripcion");
 					return View("Test", ticket);
 				}
 			}

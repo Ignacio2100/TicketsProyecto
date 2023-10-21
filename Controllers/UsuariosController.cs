@@ -13,7 +13,7 @@ namespace Ticket.Controllers
         // GET: Usuarios
         public async Task<ActionResult> Index()
         {
-            var usuarios = db.Usuarios.Include(u => u.Empleado).Include(u => u.Empresa).Include(u => u.TipoUsuario1);
+            var usuarios = db.Usuario.Include(u => u.Empleado).Include(u => u.Empresa).Include(u => u.TipoUsuario1);
             return View(await usuarios.ToListAsync());
         }
 
@@ -24,7 +24,7 @@ namespace Ticket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = await db.Usuarios.FindAsync(id);
+            Usuario usuario = await db.Usuario.FindAsync(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -35,9 +35,9 @@ namespace Ticket.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
-            ViewBag.EmpleadoId = new SelectList(db.Empleadoes, "Id", "Nombre");
-            ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nombre");
-            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "Id", "Nombre");
+            ViewBag.EmpleadoId = new SelectList(db.Empleado, "Id", "Nombre");
+            ViewBag.EmpresaId = new SelectList(db.Empresa, "Id", "Nombre");
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuario, "Id", "Nombre");
             return View();
         }
 
@@ -50,14 +50,14 @@ namespace Ticket.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Usuarios.Add(usuario);
+                db.Usuario.Add(usuario);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmpleadoId = new SelectList(db.Empleadoes, "Id", "Nombre", usuario.EmpleadoId);
-            ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nombre", usuario.EmpresaId);
-            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "Id", "Nombre", usuario.TipoUsuario);
+            ViewBag.EmpleadoId = new SelectList(db.Empleado, "Id", "Nombre", usuario.EmpleadoId);
+            ViewBag.EmpresaId = new SelectList(db.Empresa, "Id", "Nombre", usuario.EmpresaId);
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuario, "Id", "Nombre", usuario.TipoUsuario);
             return View(usuario);
         }
 
@@ -68,14 +68,14 @@ namespace Ticket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = await db.Usuarios.FindAsync(id);
+            Usuario usuario = await db.Usuario.FindAsync(id);
             if (usuario == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EmpleadoId = new SelectList(db.Empleadoes, "Id", "Nombre", usuario.EmpleadoId);
-            ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nombre", usuario.EmpresaId);
-            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "Id", "Nombre", usuario.TipoUsuario);
+            ViewBag.EmpleadoId = new SelectList(db.Empleado, "Id", "Nombre", usuario.EmpleadoId);
+            ViewBag.EmpresaId = new SelectList(db.Empresa, "Id", "Nombre", usuario.EmpresaId);
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuario, "Id", "Nombre", usuario.TipoUsuario);
             return View(usuario);
         }
 
@@ -92,9 +92,9 @@ namespace Ticket.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmpleadoId = new SelectList(db.Empleadoes, "Id", "Nombre", usuario.EmpleadoId);
-            ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nombre", usuario.EmpresaId);
-            ViewBag.TipoUsuario = new SelectList(db.TipoUsuarios, "Id", "Nombre", usuario.TipoUsuario);
+            ViewBag.EmpleadoId = new SelectList(db.Empleado, "Id", "Nombre", usuario.EmpleadoId);
+            ViewBag.EmpresaId = new SelectList(db.Empresa, "Id", "Nombre", usuario.EmpresaId);
+            ViewBag.TipoUsuario = new SelectList(db.TipoUsuario, "Id", "Nombre", usuario.TipoUsuario);
             return View(usuario);
         }
 
@@ -105,7 +105,7 @@ namespace Ticket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = await db.Usuarios.FindAsync(id);
+            Usuario usuario = await db.Usuario.FindAsync(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -118,8 +118,8 @@ namespace Ticket.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Usuario usuario = await db.Usuarios.FindAsync(id);
-            db.Usuarios.Remove(usuario);
+            Usuario usuario = await db.Usuario.FindAsync(id);
+            db.Usuario.Remove(usuario);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

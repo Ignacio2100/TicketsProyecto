@@ -34,7 +34,7 @@ namespace Ticket.Controllers
 			{
 				try
 				{
-					var usuario = db.Usuarios.Include(u => u.TipoUsuario1)
+					var usuario = db.Usuario.Include(u => u.TipoUsuario1)
 					.FirstOrDefault(u => u.Nombre == model.Correo && u.Password == model.Contraseña);
 					if (usuario == null)
 					{
