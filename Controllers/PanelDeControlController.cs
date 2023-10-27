@@ -47,9 +47,12 @@ namespace Ticket.Controllers
 			}
 			try
 			{
-				var ticket = db.Ticket.FirstOrDefault(t => t.Id == id);
+				var ticket = db.Ticket.FirstOrDefault(t => t.Id == id);			
 				if (ticket != null)
 				{
+					ticket.FechaInicio = DateTime.Now;
+					db.Entry(ticket).State = EntityState.Modified;
+					db.SaveChanges();
 					var cliente = db.Cliente.FirstOrDefault(c => c.Id == ticket.ClienteId);
 					ticket.Cliente = cliente;
 					return View(ticket);
@@ -96,7 +99,7 @@ namespace Ticket.Controllers
 				{
 					var userId = Convert.ToInt32(uid.ToString());
 					model.UsuarioId = userId;
-					model.FechaCreacion = DateTime.Now;
+					model.FechaFin = DateTime.Now;
 					db.Entry(model).State = EntityState.Modified;
 					db.SaveChanges();
 					TempData["SuccessMessage"] = $"Se guardó el comentario";
