@@ -21,9 +21,20 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group mb-3">
+                <label for="usuario">Filtrar por usuario: </label>
+                <select id="usuario" name="usuario" class="form-select mb-3" aria-label="Large select example">
+                    <option value="all">Todos los usuarios</option>
+                    @{ foreach (var item in ViewBag.Usuarios as SelectList)
+                        {
+                            <option value=@item.Value>@item.Text</option>
+                        }}
+                </select>
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary mb-3" onclick="return validarFechas()">Filtrar</button>
         <button type="button" class="btn btn-primary mb-3" onclick="location.href='@Url.Action("DescargarPDF", "Reporte", new { listaReporte = Model })'">Descargar Reporte en PDF</button>
-
     </form>
 
     <table class="table table-bordered table-hover">
@@ -32,6 +43,8 @@
                 <th>Nombre del Cliente</th>
                 <th>Proceso</th>
                 <th>Mes</th>
+                <th>Tiempo en atención</th>
+                <th>Usuario que atendió</th>
             </tr>
         </thead>
         <tbody>
@@ -41,11 +54,10 @@
                     <td>@item.Cliente</td>
                     <td>@item.Proceso</td>
                     <td>@item.Mes</td>
+                    <td>@item.TiempoEnAtencion</td>
+                    <td>@item.Usuario</td>
                 </tr>
             }
         </tbody>
-        
     </table>
-
-   
 </div>

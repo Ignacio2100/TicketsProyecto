@@ -65,10 +65,10 @@ namespace Ticket.Controllers
 			catch (Exception e)
 			{
 
-                TempData["ErrorMessage"] = $"{e.Message}";
-            }
-			
-			
+				TempData["ErrorMessage"] = $"{e.Message}";
+			}
+
+
 			return RedirectToAction("Buscar");
 		}
 
@@ -78,13 +78,13 @@ namespace Ticket.Controllers
 		{
 			try
 			{
-                var uid = Session["uid"];
-				//var id = Convert.ToInt32(uid.ToString()); le puse comentario porque no deja crear ticket si no esta logeado
-                if (ModelState.IsValid)
+				// var uid = Session["uid"];
+				// var id = Convert.ToInt32(uid.ToString()); le puse comentario porque no deja crear ticket si no esta logeado
+				if (ModelState.IsValid)
 				{
 					model.FechaCreacion = DateTime.Now;
 					model.EstadoTicketId = 1;
-					//model.UsuarioId = id;
+					// model.UsuarioId = id;
 					var newTicket = db.Ticket.Add(model);
 					db.SaveChanges();
 					TempData["SuccessMessage"] = "Ticket creado";
@@ -116,39 +116,39 @@ namespace Ticket.Controllers
 			}
 			base.Dispose(disposing);
 		}
-        public ActionResult DescargarComprobantePDF(int ticketId)
-        {
-            var ticket = db.Ticket.Find(ticketId);
-            if (ticket == null)
-            {
-                return HttpNotFound();
-            }
+		public ActionResult DescargarComprobantePDF(int ticketId)
+		{
+			var ticket = db.Ticket.Find(ticketId);
+			if (ticket == null)
+			{
+				return HttpNotFound();
+			}
 
-            // Creamos un nuevo documento PDF
-            Document doc = new Document();
-            MemoryStream memoryStream = new MemoryStream();
-            PdfWriter writer = PdfWriter.GetInstance(doc, memoryStream);
+			// Creamos un nuevo documento PDF
+			Document doc = new Document();
+			MemoryStream memoryStream = new MemoryStream();
+			PdfWriter writer = PdfWriter.GetInstance(doc, memoryStream);
 
-            doc.Open();
+			doc.Open();
 
-            // Agregamos el contenido al documento PDF
-            doc.Add(new Paragraph("Número de ticket: " + ticket.Id));
-            doc.Add(new Paragraph("Cliente: " + ticket.Cliente.Nombre + " " + ticket.Cliente.Apellido));
-            doc.Add(new Paragraph("Fecha de emisión: " + ticket.FechaCreacion.ToString("d 'de' MMMM 'de' yyyy, h:mm tt")));
+			// Agregamos el contenido al documento PDF
+			doc.Add(new Paragraph("Número de ticket: " + ticket.Id));
+			doc.Add(new Paragraph("Cliente: " + ticket.Cliente.Nombre + " " + ticket.Cliente.Apellido));
+			doc.Add(new Paragraph("Fecha de emisión: " + ticket.FechaCreacion.ToString("d 'de' MMMM 'de' yyyy, h:mm tt")));
 
-            // Cerrar el documento PDF
-            doc.Close();
+			// Cerrar el documento PDF
+			doc.Close();
 
-            // Configuramos la respuesta para descargar el PDF
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment; filename=Comprobante.pdf");
-            Response.BinaryWrite(memoryStream.ToArray());
+			// Configuramos la respuesta para descargar el PDF
+			Response.ContentType = "application/pdf";
+			Response.AddHeader("Content-Disposition", "attachment; filename=Comprobante.pdf");
+			Response.BinaryWrite(memoryStream.ToArray());
 
-            return new EmptyResult();
-        }
-        
-
+			return new EmptyResult();
+		}
 
 
-    }
+
+
+	}
 }
