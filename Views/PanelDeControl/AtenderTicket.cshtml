@@ -29,16 +29,16 @@ else
                 <form>
                     <input name="Id" type="number" value="@Model.Id" hidden />
                     <input name="ClienteId" type="number" value="@Model.ClienteId" hidden />
-                    <input name="Fecha" type="date" value="@Model.Fecha" hidden />
+                    <input name="Fecha" type="date" value="@Model.FechaCreacion" hidden />
                     <input name="ProcesoId" type="number" value="@Model.ProcesoId" hidden />
                     <div class="form-group">
                         <label>Selecciona una opción:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Opcion" id="opcion1" value="opcion1">
+                            <input class="form-check-input" type="radio" name="EstadoTicketId" id="opcion1" value="3">
                             <label class="form-check-label" for="opcion1">Atendido</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Opcion" id="opcion2" value="opcion2">
+                            <input class="form-check-input" type="radio" name="EstadoTicketId" id="opcion2" value="2">
                             <label class="form-check-label" for="opcion2">No Asistió</label>
                         </div>
                     </div>

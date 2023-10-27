@@ -39,22 +39,31 @@ namespace Ticket.Controllers
 
 		public ActionResult Crear(string dpi)
 		{
-			if (!dpi.IsNullOrWhiteSpace() && Regex.IsMatch(dpi, @"^\d+$") && dpi.Length == 13)
+			try
 			{
-				var cliente = db.Cliente.FirstOrDefault(c => c.Dpi == dpi);
-
-				if (cliente != null)
+				if (!dpi.IsNullOrWhiteSpace() && Regex.IsMatch(dpi, @"^\d+$") && dpi.Length == 13)
 				{
-					var ticket = new Tickets
+					var cliente = db.Cliente.Include(c => c.TipoGenero).FirstOrDefault(c => c.Dpi == dpi);
+
+					if (cliente != null)
 					{
-						ClienteId = cliente.Id,
-						Cliente = cliente,
-					};
-					ViewBag.Procesos = new SelectList(db.Proceso, "Id", "Descripcion");
-					return View("Crear", ticket);
+						var ticket = new Tickets
+						{
+							ClienteId = cliente.Id,
+							Cliente = cliente,
+						};
+						ViewBag.Procesos = new SelectList(db.Proceso, "Id", "Descripcion");
+						return View("Crear", ticket);
+					}
 				}
 			}
-			TempData["ErrorMessage"] = $"No existe un cliente con este DPI";
+			catch (Exception e)
+			{
+
+                TempData["ErrorMessage"] = $"{e.Message}";
+            }
+			
+			
 			return RedirectToAction("Buscar");
 		}
 
@@ -64,9 +73,13 @@ namespace Ticket.Controllers
 		{
 			try
 			{
-				if (ModelState.IsValid)
+                var uid = Session["uid"];
+				var id = Convert.ToInt32(uid.ToString());
+                if (ModelState.IsValid)
 				{
 					model.FechaCreacion = DateTime.Now;
+					model.EstadoTicketId = 1;
+					model.UsuarioId = id;
 					var newTicket = db.Ticket.Add(model);
 					db.SaveChanges();
 					TempData["SuccessMessage"] = "Ticket creado";

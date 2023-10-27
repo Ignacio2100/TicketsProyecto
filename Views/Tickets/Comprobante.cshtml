@@ -9,7 +9,7 @@
         <p class="ticket-number text-primary my-0">@Model.Id</p>
         <p class="card-message pb-0 mb-2">@Model.Cliente.Nombre @Model.Cliente.Apellido, tu solicitud fue realizada con éxito.</p>
         <p class="my-0 py-0 fs-6">Fecha de emisión:</p>
-        <p class="pt-0 mt-0 fs-6">@Model.Fecha.ToString("d 'de' MMMM 'de' yyyy, h:mm tt", cultureInfo)</p>
+        <p class="pt-0 mt-0 fs-6">@Model.FechaCreacion.ToString("d 'de' MMMM 'de' yyyy, h:mm tt", cultureInfo)</p>
         <p class="parrafo"> ¿Deseas imprimir tú comprobante?</p>
         <div class="btn-group">
             <a href="@Url.Action("Buscar")" class="btn btn-secondary">No</a>
