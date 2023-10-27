@@ -7,7 +7,7 @@ namespace Ticket.Models
 {
     public class ReporteCLS
     {
-        public int Mes { get; set; }
+        public DateTime Mes { get; set; }
 
         public string Proceso { get; set; }
 

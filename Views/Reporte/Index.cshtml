@@ -7,25 +7,23 @@
     </div>
 
     <form method="get">
-        <div class="form-group">
-            <label for="mes">Seleccione un Mes:</label>
-            <select id="mes" name="mes" class="form-control">
-                <option value="0">Seleccione</option>
-                <option value="1">Enero</option>
-                <option value="2">Febrero</option>
-                <option value="3">Marzo</option>
-                <option value="4">Abril</option>
-                <option value="5">Mayo</option>
-                <option value="6">Junio</option>
-                <option value="7">Julio</option>
-                <option value="8">Agosto</option>
-                <option value="9">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-            </select>
+        <div class="row">
+            <div class="col">
+                <div class="form-group mb-3">
+                    <label for="fechaInicio">Fecha de inicio:</label>
+                    <input type="date" id="fechaInicio" name="fechaInicio" class="form-control">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group mb-3">
+                    <label for="fechaFin">Fecha de finalización:</label>
+                    <input type="date" id="fechaFin" name="fechaFin" class="form-control">
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <button type="submit" class="btn btn-primary mb-3" onclick="return validarFechas()">Filtrar</button>
+        <button type="button" class="btn btn-primary mb-3" onclick="location.href='@Url.Action("DescargarPDF", "Reporte", new { listaReporte = Model })'">Descargar Reporte en PDF</button>
+
     </form>
 
     <table class="table table-bordered table-hover">
@@ -46,5 +44,8 @@
                 </tr>
             }
         </tbody>
+        
     </table>
+
+   
 </div>
