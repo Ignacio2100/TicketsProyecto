@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Diagnostics;
 using System;
 using System.Data.Entity;
+using System.Collections.Generic;
 using Ticket.Models;
 using Tickets = Ticket.Models.Ticket;
 
@@ -20,7 +21,8 @@ namespace Ticket.Controllers
 				return RedirectToAction("Index", "Login", new { from = "PanelDeControl-Index" });
 			}
 			var tickets = db.Ticket.AsEnumerable();
-			return View(tickets);
+			var tickets2 = db.Ticket.Where(t => t.FechaCreacion >= DateTime.Today);
+			return View(tickets2);
 		}
 
 		public ActionResult TicketsEnEsperaPartialView()

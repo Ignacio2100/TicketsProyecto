@@ -64,7 +64,6 @@ namespace Ticket.Controllers
 			}
 			catch (Exception e)
 			{
-
 				TempData["ErrorMessage"] = $"{e.Message}";
 			}
 
@@ -144,7 +143,17 @@ namespace Ticket.Controllers
 			Response.AddHeader("Content-Disposition", "attachment; filename=Comprobante.pdf");
 			Response.BinaryWrite(memoryStream.ToArray());
 
-			return new EmptyResult();
+			//return new EmptyResult();
+			// return RedirectToAction(nameof(Buscar));
+
+			// Generate and save the PDF to a temporary location
+			string pdfFilePath = "path_to_temporary_location/Comprobante.pdf"; // Adjust the path
+
+			// ... (PDF generation code)
+
+			// Redirect to the 'Buscar' action with a parameter that specifies the PDF path
+			return RedirectToAction(nameof(Buscar), new { pdfPath = pdfFilePath });
+
 		}
 
 

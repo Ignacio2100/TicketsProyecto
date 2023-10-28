@@ -72,9 +72,9 @@ namespace Ticket.Controllers
 				PdfWriter writer = PdfWriter.GetInstance(document, ms);
 				document.Open();
 
-				PdfPTable table = new PdfPTable(4); // 3 columnas para tus datos
+				PdfPTable table = new PdfPTable(5); // 3 columnas para tus datos
 				table.WidthPercentage = 100;
-				float[] widths = new float[] { 30, 25, 25, 20 }; // Ancho de las columnas
+				float[] widths = new float[] { 25, 25, 15, 15, 25 }; // Ancho de las columnas
 				table.SetWidths(widths);
 
 				// Encabezados de la tabla
@@ -82,6 +82,7 @@ namespace Ticket.Controllers
 				table.AddCell("Proceso");
 				table.AddCell("Mes");
 				table.AddCell("Tiempo en atención");
+				table.AddCell("Usuario");
 
 
 				// Datos de la tabla
@@ -91,6 +92,7 @@ namespace Ticket.Controllers
 					table.AddCell(item.Proceso);
 					table.AddCell(item.Mes.ToString("dd/MM/yyyy"));
 					table.AddCell(item.TiempoEnAtencion);
+					table.AddCell(item.Usuario);
 				}
 
 				document.Add(table);
@@ -104,7 +106,7 @@ namespace Ticket.Controllers
 				Response.BinaryWrite(ms.ToArray());
 				Response.End();
 			}
-
+			ViewBag.Usuarios = new SelectList(db.Usuario, "Id", "Nombre");
 			return View("Index", ListaReporte);
 		}
 	}
